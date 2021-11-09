@@ -1,0 +1,10 @@
+<?php
+
+$NAMESPACE$
+
+use Kizi\Core\Contracts\RepositoryInterface;
+
+interface $CLASS$Repository extends RepositoryInterface
+{
+    //
+}

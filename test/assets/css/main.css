@@ -1,0 +1,7 @@
+#__nuxt, #__layout {
+  height: 100%;
+  overflow-x: hidden;
+}
+.navi-item-active{
+  background-color: #EBEDF3;
+}

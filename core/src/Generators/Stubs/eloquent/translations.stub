@@ -1,0 +1,18 @@
+<?php
+
+$NAMESPACE$
+
+use Illuminate\Database\Eloquent\Model;
+use Kizi\Core\Entities\Traits\Translatable;
+
+class $CLASS$ extends Model
+{
+    use Translatable;
+
+    public $translationModel = $TRANSLATION_CLASS$::class;
+    public $translationForeignKey = "$TRANSLATION_KEY$";
+    protected $translatedAttributes = [];
+    protected $with = ['translations'];
+
+    protected $fillable = $FILLABLE$;
+}

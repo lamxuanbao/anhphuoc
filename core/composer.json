@@ -1,0 +1,36 @@
+{
+    "name": "kizi/core",
+    "description": "no description",
+    "type": "library",
+    "authors": [
+        {
+            "name": "nhockizi",
+            "email": "nhockizi@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.3",
+        "tymon/jwt-auth": "1.0.*",
+        "prettus/l5-repository": "^2.6",
+        "laravelista/lumen-vendor-publish": "^8.0",
+        "league/flysystem": "^1.0.8",
+        "illuminate/mail": "^8.33",
+        "illuminate/session": "^8.40"
+    },
+    "autoload": {
+        "files": [
+            "src/helpers.php"
+        ],
+        "psr-4": {
+            "Kizi\\Core\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Kizi\\Core\\Providers\\CoreProvider"
+            ]
+        }
+    }
+}

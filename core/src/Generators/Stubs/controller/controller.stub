@@ -1,0 +1,10 @@
+<?php
+
+$NAMESPACE$
+
+use Kizi\Core\Http\Controllers\Controller;
+
+class $CONTROLLER$Controller extends Controller
+{
+    //
+}
