@@ -37,7 +37,7 @@ class UserCreateCommand extends Command
     public function handle()
     {
         $email = $this->ask('Please enter a email to login');
-        $password = bcrypt($this->secret('Please enter a password to login'));
+        $password = $this->secret('Please enter a password to login');
         app(UserRepository::class)->create([
             'email' => $email,
             'password' => $password,

@@ -16,6 +16,18 @@
         </template>
       </div>
     </div>
+    <div class="col-12">
+      <div class="form-group">
+        <label>{{ $t("description") }}:</label>
+        <a-input size="large" v-model="item.app_description" />
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <label>{{ $t("keywords") }}:</label>
+        <a-input size="large" v-model="item.app_keywords" />
+      </div>
+    </div>
   </div>
 </template>
 

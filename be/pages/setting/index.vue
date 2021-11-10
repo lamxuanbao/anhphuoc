@@ -16,17 +16,20 @@
             <!-- <lazy-widget-seo ref="seo" :item="item" /> -->
           </accordion-item>
         </accordion-group>
+        <template v-slot:footer>
+          <div class="w-100 text-right">
+            <a-button type="success"> {{ $t("reset") }} </a-button>
+            &nbsp;
+            <a-button
+              type="primary"
+              @click.prevent.stop="save"
+              :loading="loading"
+            >
+              {{ $t("save") }}
+            </a-button>
+          </div>
+        </template>
       </accordion>
-      <template v-slot:foot>
-        <div class="w-100 text-right">
-          {{ item }}
-          <a-button type="success"> {{ $t("reset") }} </a-button>
-          &nbsp;
-          <a-button type="primary" @click.prevent.stop="save">
-            {{ $t("save") }}
-          </a-button>
-        </div>
-      </template>
     </a-card>
   </client-only>
 </template>
@@ -36,7 +39,7 @@ import { mapGetters, mapActions } from "vuex";
 import _ from "lodash";
 
 export default {
-  data: function () {
+  data: function() {
     return {
       item: {
         company_name: null,
@@ -45,8 +48,8 @@ export default {
         company_hotline: null,
         image_default: null,
         app_title: null,
-        meta_keywords: null,
-        meta_description: null,
+        app_keywords: null,
+        app_description: null,
         supported_locales: [],
         default_locale: null,
         default_timezone: null,
@@ -74,7 +77,7 @@ export default {
       updateSetting: "setting/update_data",
     }),
     async getData() {
-      // await this.getSetting();
+      await this.getSetting();
       this.item = this.$options.filters.mergeObject(this.item, this.setting);
     },
     save(e) {
@@ -88,7 +91,7 @@ export default {
       //   return;
       // }
       const data = this.$options.filters.convertJsonToFormData(this.item);
-      data.append('_method', 'PUT')
+      data.append("_method", "PUT");
       this.updateSetting(data)
         .then(() => {
           this.getSetting();

@@ -65,9 +65,9 @@ export default {
         is_active: true,
         province_id: null,
         content: null,
-        images: null,
+        images: [],
         files: [],
-        remove_files: null,
+        remove_files: [],
       },
       serverErrors: {},
     };

@@ -64,6 +64,6 @@ class CoreInstallCommand extends Command
         $roles = require __DIR__.'/../../Database/data/role.php';
         app(RoleRepository::class)->create($roles);
 
-        Artisan::call('core:generate-province');
+        Artisan::call('general:province');
     }
 }

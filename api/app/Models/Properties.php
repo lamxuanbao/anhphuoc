@@ -19,6 +19,8 @@ class Properties extends Model
         'price',
         'area',
         'province_id',
+        'user_id',
+        'customer_id',
     ];
     protected $casts = [
         'is_active' => 'boolean',

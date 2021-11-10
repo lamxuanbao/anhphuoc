@@ -1,7 +1,5 @@
 <template>
   <div class="clearfix">
-    {{ fileList }}
-    {{ images }}
     <a-upload
       action=""
       list-type="picture-card"

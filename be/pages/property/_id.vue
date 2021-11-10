@@ -65,6 +65,7 @@ export default {
     _.forEach(this.item.images, function (value, key) {
       images.push({
         uid: key,
+        id: value.id,
         status: "done",
         url: value.url,
       });
@@ -83,9 +84,9 @@ export default {
         is_active: true,
         province_id: null,
         content: null,
-        images: null,
+        images: [],
         files: [],
-        remove_files: null,
+        remove_files: [],
       },
       serverErrors: {},
     };

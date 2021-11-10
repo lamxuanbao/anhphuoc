@@ -42,17 +42,19 @@ class AuthController extends Controller
                 'Email does not exists'
             );
         }
-        if (!Hash::check($password, $user->password)) {
-            return response_api(
-                [
-                    'password' => [
-                        'Password is incorrect'
-                    ],
-                ],
-                422,
-                'Password is not incorrect'
-            );
-        }
+
+        dd($password, $user->password,Hash::check($password, $user->password));
+        // if (!Hash::check($password, $user->password)) {
+        //     return response_api(
+        //         [
+        //             'password' => [
+        //                 'Password is incorrect'
+        //             ],
+        //         ],
+        //         422,
+        //         'Password is not incorrect'
+        //     );
+        // }
 
         return $this->respondWithToken(Auth::login($user));
     }

@@ -4,9 +4,10 @@
       <div class="col-12">
         <div class="form-group">
           <label>{{ $t("logo") }}:</label>
+          {{item}}
           <!-- <image-upload :src="logo" @change="uploadLogo" width="65px" /> -->
           <client-only>
-            <image-upload :images="item.images" @change="uploadFile" />
+            <image-upload-multi :images="item.images" @change="uploadFile" @remove="removeFile" />
           </client-only>
         </div>
       </div>
@@ -16,7 +17,9 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import _ from "lodash";
+import image_upload_multi from '../../../core/images/image_upload_multi.vue';
 export default {
+  components: { image_upload_multi },
   props: {
     item: {
       type: Object,
@@ -35,10 +38,18 @@ export default {
   methods: {
     uploadFile(image) {
       const that = this;
-      let files = this.item.files;
+      let files = that.item.files;
       files.push(image);
-      this.item.files = files;
+      that.item.files = files;
     },
+    removeFile(image) {
+      const that = this;
+      let remove_files = that.item.remove_files;
+      remove_files.push(image.id);
+      remove_files.push(image.id);
+      that.item.remove_files = remove_files;
+      console.log(that.item);
+    }
   },
 };
 </script>

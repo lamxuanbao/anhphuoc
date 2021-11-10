@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-column flex-root">
-    <!-- <lazy-app-header-mobile></lazy-app-header-mobile> -->
+    <lazy-app-header-mobile></lazy-app-header-mobile>
     <div class="d-flex flex-row flex-column-fluid page">
       <lazy-app-aside></lazy-app-aside>
       <div class="d-flex flex-column flex-row-fluid wrapper">
@@ -9,7 +9,7 @@
           <lazy-app-sub-header :breadcrumbs="breadcrumbs"></lazy-app-sub-header>
           <div class="d-flex flex-column-fluid">
             <div class="container-fluid">
-              <Nuxt/>
+              <Nuxt />
             </div>
           </div>
         </div>
@@ -27,20 +27,41 @@ export default {
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
     const setting = this.$store.getters["setting/data"];
     let favicon_url = null;
-    if (_.has(setting.favicon, "url")) {
-      favicon_url = setting.favicon.url;
+    if (_.has(setting, "favicon")) {
+      if (_.has(setting.favicon, "url")) {
+        favicon_url = setting.favicon.url;
+      }
     }
+    let link = [
+      {
+        hid: "apple-touch-icon",
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: "/apple-touch-icon.png",
+      },
+    ];
+    if (!_.isNull(favicon_url)) {
+      link = [
+        ...link,
+        {
+          rel: "icon",
+          type: "image/x-icon",
+          href: favicon_url,
+        },
+      ];
+    }
+    console.log(favicon_url,setting, link);
     return {
       htmlAttrs: {
         ...i18nHead.htmlAttrs,
       },
       meta: [...i18nHead.meta],
       link: [
-        {
-          rel: "icon",
-          type: "image/x-icon",
-          href: favicon_url,
-        },
+        // {
+        //   rel: "icon",
+        //   type: "image/x-icon",
+        //   href: favicon_url,
+        // },
         {
           hid: "apple-touch-icon",
           rel: "apple-touch-icon",
@@ -55,7 +76,7 @@ export default {
       },
     };
   },
-  data: function () {
+  data: function() {
     return {
       asideOverlay: false,
     };

@@ -42,7 +42,12 @@
           ]"
         >
           <label>Giá <span class="text-danger">*</span></label>
-          <a-input-number class="w-100" size="large" v-model="item.price" />
+          <a-input-number
+            class="w-100"
+            size="large"
+            v-model="item.price"
+            :min="0"
+          />
           <div
             class="ant-form-explain"
             v-if="$v.item.price.$error || serverErrors.price"
@@ -136,7 +141,7 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
-import { required,decimal } from "vuelidate/lib/validators";
+import { required, decimal } from "vuelidate/lib/validators";
 export default {
   props: {
     item: {
