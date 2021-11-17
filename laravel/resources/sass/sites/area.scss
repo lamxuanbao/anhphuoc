@@ -1,0 +1,30 @@
+.content {
+    background-color: rgba(229, 230, 236, 0.5);
+    height: 100%;
+    position: relative;
+    .item {
+        background: #faf8ee;
+
+        img {
+            width: 100%;
+            height: 300px;
+        }
+        ul {
+            width: 100%;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            li {
+                line-height: 40px;
+            }
+        }
+        .badge {
+            cursor: pointer;
+            border: 2px solid #00a88e;
+            color: #00a88e;
+            background: transparent;
+            font-size: 20px;
+            padding: 5px;
+        }
+    }
+}

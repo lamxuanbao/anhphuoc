@@ -13,7 +13,7 @@ export default ($axios) => ({
     },
 
     update(id, payload) {
-        return $axios.$put(`${resource}/${id}`, payload)
+        return $axios.$post(`${resource}/${id}`, payload)
     },
 
     delete(id) {

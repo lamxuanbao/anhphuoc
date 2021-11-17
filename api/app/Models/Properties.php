@@ -11,7 +11,7 @@ class Properties extends Model
 
     public $translationModel = PropertyTranslations::class;
     public $translationForeignKey = 'property_id';
-    protected $translatedAttributes = ['name', 'content'];
+    protected $translatedAttributes = ['name', 'content', 'keywords', 'description'];
     protected $with = ['translations'];
     protected $fillable = [
         'is_active',
@@ -20,7 +20,7 @@ class Properties extends Model
         'area',
         'province_id',
         'user_id',
-        'customer_id',
+        'slug',
     ];
     protected $casts = [
         'is_active' => 'boolean',
@@ -28,6 +28,6 @@ class Properties extends Model
 
     public function images()
     {
-        return $this->hasMany(PropertyImages::class,'property_id');
+        return $this->hasMany(PropertyImages::class, 'property_id');
     }
 }

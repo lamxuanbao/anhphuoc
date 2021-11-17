@@ -21,6 +21,7 @@ export default ({ store, $axios, $toast, redirect, error }) => {
       case 422:
         return false
       default:
+        console.log(e.response);
         return error(
           { statusCode: status, message: data.message }
         )

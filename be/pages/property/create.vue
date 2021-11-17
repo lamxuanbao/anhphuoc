@@ -3,7 +3,7 @@
     <accordion>
       <accordion-group :name="$t('property_information')">
         <accordion-item :name="$t('basic_information')">
-          {{item}}
+          {{ item }}
           <lazy-property-general
             ref="general"
             :item="item"
@@ -13,6 +13,13 @@
         <accordion-item :name="$t('images')">
           <lazy-property-image
             ref="images"
+            :item="item"
+            :serverErrors="serverErrors"
+          />
+        </accordion-item>
+        <accordion-item :name="$t('seo')">
+          <lazy-property-seo
+            ref="seo"
             :item="item"
             :serverErrors="serverErrors"
           />
@@ -65,6 +72,8 @@ export default {
         is_active: true,
         province_id: null,
         content: null,
+        keywords: null,
+        description: null,
         images: [],
         files: [],
         remove_files: [],
@@ -78,40 +87,39 @@ export default {
       createData: "property/create_data",
     }),
     save(e) {
-      console.log(this.item);
       e.preventDefault();
       this.$refs.general.$v.$touch();
-      // if (this.$refs.general.$v.$pending || this.$refs.general.$v.$invalid) {
-      //   return;
-      // }
+      if (this.$refs.general.$v.$pending || this.$refs.general.$v.$invalid) {
+        return;
+      }
       this.loading = true;
       const data = this.$options.filters.data(this.item);
 
       var form_data = new FormData();
-      _.forEach(this.item, function(value, key) {
-        if(_.isBoolean(value)){
-          value = value ? 1 : 0
+      _.forEach(this.item, function (value, key) {
+        if (_.isBoolean(value)) {
+          value = value ? 1 : 0;
         }
-        if(key == 'files'){
-          _.forEach(value, function(v, k) {
-          form_data.append('files[]', v);  
-          });
-        }else{
-          form_data.append(key, value);
+        if (!!value) {
+          if (key == "files") {
+            _.forEach(value, function (v, k) {
+              form_data.append("files[]", v);
+            });
+          } else if (key != "images") {
+            form_data.append(key, value);
+          }
         }
       });
-      console.log(form_data);
+
       this.createData(form_data)
         .then(() => {
-          // this.$router.push({ name: "property" });
+          this.$router.push({ name: "property" });
         })
         .finally(() => {
           this.loading = false;
         })
         .catch((e) => {
-          // const { status, data } = e.response;
-          console.log(e);
-          // this.serverErrors = data.errors;
+          this.serverErrors = data.errors;
         });
     },
   },

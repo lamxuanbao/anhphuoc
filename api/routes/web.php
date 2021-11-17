@@ -22,7 +22,6 @@ use Kizi\Core\Models\Roles;
 use Kizi\Core\Models\Settings;
 
 $router->get('/', function () use ($router) {
-
     return $router->app->version();
 });
 $router->group(['prefix' => '/'], function () use ($router) {

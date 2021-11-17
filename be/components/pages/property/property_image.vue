@@ -17,9 +17,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import _ from "lodash";
-import image_upload_multi from '../../../core/images/image_upload_multi.vue';
 export default {
-  components: { image_upload_multi },
   props: {
     item: {
       type: Object,
@@ -45,7 +43,6 @@ export default {
     removeFile(image) {
       const that = this;
       let remove_files = that.item.remove_files;
-      remove_files.push(image.id);
       remove_files.push(image.id);
       that.item.remove_files = remove_files;
       console.log(that.item);

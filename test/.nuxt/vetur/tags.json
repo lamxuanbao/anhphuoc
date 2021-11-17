@@ -1,0 +1,62 @@
+{
+  "Logo": {
+    "description": "Auto imported from components/Logo.vue"
+  },
+  "Error401": {
+    "description": "Auto imported from components/error/401.vue"
+  },
+  "Error403": {
+    "description": "Auto imported from components/error/403.vue"
+  },
+  "Error404": {
+    "description": "Auto imported from components/error/404.vue"
+  },
+  "Error500": {
+    "description": "Auto imported from components/error/500.vue"
+  },
+  "LayoutAside": {
+    "description": "Auto imported from components/layout/aside.vue"
+  },
+  "LayoutAsideMenu": {
+    "description": "Auto imported from components/layout/aside_menu.vue"
+  },
+  "LayoutAsideQuickUser": {
+    "description": "Auto imported from components/layout/aside_quick_user.vue"
+  },
+  "LayoutBrand": {
+    "description": "Auto imported from components/layout/brand.vue"
+  },
+  "LayoutBreadcrumb": {
+    "description": "Auto imported from components/layout/breadcrumb.vue"
+  },
+  "LayoutFooter": {
+    "description": "Auto imported from components/layout/footer.vue"
+  },
+  "LayoutHeader": {
+    "description": "Auto imported from components/layout/header.vue"
+  },
+  "LayoutTopbar": {
+    "description": "Auto imported from components/layout/topbar.vue"
+  },
+  "PagesRoleGeneral": {
+    "description": "Auto imported from components/pages/role/role_general.vue"
+  },
+  "PagesRolePermission": {
+    "description": "Auto imported from components/pages/role/role_permission.vue"
+  },
+  "PagesSettingsGeneral": {
+    "description": "Auto imported from components/pages/settings/general.vue"
+  },
+  "PagesSettingsSettingImage": {
+    "description": "Auto imported from components/pages/settings/setting_image.vue"
+  },
+  "PagesSettingsSettingStore": {
+    "description": "Auto imported from components/pages/settings/setting_store.vue"
+  },
+  "PagesUserGeneral": {
+    "description": "Auto imported from components/pages/user/user_general.vue"
+  },
+  "PagesUserPassword": {
+    "description": "Auto imported from components/pages/user/user_password.vue"
+  }
+}

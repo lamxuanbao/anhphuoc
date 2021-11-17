@@ -28,14 +28,11 @@ class Properties extends Migration
                       ->default(false);
                 $table->boolean('is_default')
                       ->default(false);
-                $table->bigInteger('user_id')
-                    ->nullable()
-                    ->unsigned()
-                    ->index();
-                $table->bigInteger('customer_id')
-                    ->nullable()
-                    ->unsigned()
-                    ->index();
+                $table->bigInteger('created_by')
+                      ->nullable()
+                      ->unsigned()
+                      ->index();
+                $table->longText('slug');
                 $table->timestamps();
                 $table->softDeletes();
             }

@@ -1,13 +1,12 @@
 <?php
 
 use Illuminate\Http\Response;
-use Kizi\Core\Services\ResponseService;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 if (!function_exists('response_api')) {
     function response_api($data = '', $code = Response::HTTP_OK, $message = null)
     {
-        $responseApi = app(ResponseService::class);
+        $responseApi = app(\Kizi\Core\Services\Provider\ResponseService::class);
         return $responseApi->send($data, $code, $message);
     }
 }

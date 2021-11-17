@@ -22,6 +22,8 @@ class PropertyTranslations extends Migration
                 $table->longText('content');
                 $table->bigInteger('property_id')
                       ->unsigned();
+                $table->longText('keywords')->nullable();
+                $table->longText('description')->nullable();
                 $table->unique(['property_id', 'locale']);
                 $table->index(['property_id', 'locale']);
             }

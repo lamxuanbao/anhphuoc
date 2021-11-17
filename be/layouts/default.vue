@@ -56,20 +56,20 @@ export default {
         ...i18nHead.htmlAttrs,
       },
       meta: [...i18nHead.meta],
-      link: [
-        // {
-        //   rel: "icon",
-        //   type: "image/x-icon",
-        //   href: favicon_url,
-        // },
-        {
-          hid: "apple-touch-icon",
-          rel: "apple-touch-icon",
-          sizes: "180x180",
-          href: "/apple-touch-icon.png",
-        },
-        ...i18nHead.link,
-      ],
+      // link: [
+      //   // {
+      //   //   rel: "icon",
+      //   //   type: "image/x-icon",
+      //   //   href: favicon_url,
+      //   // },
+      //   {
+      //     hid: "apple-touch-icon",
+      //     rel: "apple-touch-icon",
+      //     sizes: "180x180",
+      //     href: "/apple-touch-icon.png",
+      //   },
+      //   ...i18nHead.link,
+      // ],
       bodyAttrs: {
         class:
           "quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed subheader-fixed subheader-enabled subheader-solid aside-enabled aside-fixed",

@@ -34,7 +34,6 @@ use Kizi\Core\Repositories\Eloquent\ProvinceRepositoryEloquent;
 use Kizi\Core\Repositories\Eloquent\RoleRepositoryEloquent;
 use Kizi\Core\Repositories\Eloquent\UserRepositoryEloquent;
 use Kizi\Core\Repositories\Eloquent\WardRepositoryEloquent;
-use Kizi\Core\Services\ResponseService;
 use Laravelista\LumenVendorPublish\VendorPublishCommand;
 use Tymon\JWTAuth\Providers\LumenServiceProvider;
 
@@ -68,9 +67,12 @@ class CoreProvider extends ServiceProvider
         $this->registerRepository();
         $this->registerRouteMiddleware();
         $this->commands($this->commands);
-        $this->app->singleton('responseApi', function () {
-            return new ResponseService();
-        });
+        $this->app->singleton(
+            'responseApi',
+            function () {
+                return new ResponseService();
+            }
+        );
         $this->registerProvider();
     }
 
@@ -81,25 +83,40 @@ class CoreProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->singleton('setting', function () {
-            return new \Kizi\Core\Libraries\Settings(Settings::allCached());
-        });
+        $this->registerService();
+        $this->app->singleton(
+            'setting',
+            function () {
+                return new \Kizi\Core\Libraries\Settings(Settings::allCached());
+            }
+        );
 
         $session = $this->app->loadComponent('session', SessionServiceProvider::class, 'session');
-        $this->app->singleton(SessionManager::class, function () use ($session) {
-            return $session;
-        });
+        $this->app->singleton(
+            SessionManager::class,
+            function () use ($session) {
+                return $session;
+            }
+        );
 
-        $sessionStore = $this->app->loadComponent('session', SessionServiceProvider::class,
-            'session.store');
-        $this->app->singleton('session.store', function () use ($sessionStore) {
-            return $sessionStore;
-        });
+        $sessionStore = $this->app->loadComponent(
+            'session',
+            SessionServiceProvider::class,
+            'session.store'
+        );
+        $this->app->singleton(
+            'session.store',
+            function () use ($sessionStore) {
+                return $sessionStore;
+            }
+        );
 
-        $this->app->routeMiddleware([
-            'core-jwt' => VerifyJWTToken::class,
-            'core-document' => VerifyDocumentToken::class,
-        ]);
+        $this->app->routeMiddleware(
+            [
+                'core-jwt'      => VerifyJWTToken::class,
+                'core-document' => VerifyDocumentToken::class,
+            ]
+        );
         $this->registerPublishing();
         $this->loadRoutesFrom(__DIR__.'/../../routes/api.php');
         $this->loadRoutesFrom(__DIR__.'/../../routes/document.php');
@@ -159,9 +176,12 @@ class CoreProvider extends ServiceProvider
     private function registerProvider()
     {
         $this->app->register(\Illuminate\Mail\MailServiceProvider::class);
-        $this->app->singleton('payment', function ($app) {
-            return new PaymentManager($app);
-        });
+        $this->app->singleton(
+            'payment',
+            function ($app) {
+                return new PaymentManager($app);
+            }
+        );
     }
 
     protected function registerRepository()
@@ -173,12 +193,13 @@ class CoreProvider extends ServiceProvider
         $this->app->singleton(WardRepository::class, WardRepositoryEloquent::class);
 
         $repository = config('repository');
-        $basePath = $repository['generator']['basePath'];
-        $rootNamespace = $repository['generator']['rootNamespace'];
+//        $basePath = $repository['generator']['basePath'];
+        $basePath         = realpath(__DIR__.'/../');
+        $rootNamespace    = $repository['generator']['rootNamespace'];
         $rootRepositories = $repository['generator']['paths']['repositories'];
-        $rootInterfaces = $repository['generator']['paths']['interfaces'];
-        $repositories = str_replace("\\", "/", $rootRepositories);
-        $interfaces = str_replace("\\", "/", $rootInterfaces);
+        $rootInterfaces   = $repository['generator']['paths']['interfaces'];
+        $repositories     = str_replace("\\", "/", $rootRepositories);
+        $interfaces       = str_replace("\\", "/", $rootInterfaces);
         try {
             $files = File::files($basePath.'/'.$interfaces);
             foreach ($files as $file) {
@@ -191,6 +212,34 @@ class CoreProvider extends ServiceProvider
             }
         } catch (\Exception $e) {
         }
+    }
+
+    protected function registerService()
+    {
+        $this->app->singleton(
+            \Kizi\Core\Contracts\Services\UserService::class,
+            \Kizi\Core\Services\UserService::class
+        );
+////        $rootNamespace    = $repository['generator']['rootNamespace'];
+//
+//        $basePath       = realpath(__DIR__.'/../');
+//        $rootService    = 'Services';
+//        $rootInterfaces = 'Contracts\\Services';
+//        $service        = str_replace("\\", "/", $rootService);
+//        $interfaces     = str_replace("\\", "/", $rootInterfaces);
+//        try {
+//            $files = File::files($basePath.'/'.$interfaces);
+//            foreach ($files as $file) {
+//                $baseName = $file->getFilenameWithoutExtension();
+//                if (File::exists($basePath.'/'.$service.'/'.$baseName.'.php')) {
+////                    $abstract = $rootNamespace.$rootInterfaces.'\\'.$file->getFilenameWithoutExtension();
+////                    $concrete = $rootNamespace.$rootRepositories.'\\'.$baseName;
+////                    $this->app->singleton($abstract, $concrete);
+//
+//                }
+//            }
+//        } catch (\Exception $e) {
+//        }
     }
 
     /**
@@ -207,11 +256,17 @@ class CoreProvider extends ServiceProvider
             $this->publishes([__DIR__.'/../../resources/app/config/database.php' => config_path('database.php')]);
             $this->publishes([__DIR__.'/../../resources/app/config/mail.php' => config_path('mail.php')]);
             $this->publishes([__DIR__.'/../../resources/app/config/swagger.php' => config_path('swagger.php')]);
-            $this->publishes([__DIR__.'/../../resources/filesystems/config/config.php' => config_path('filesystems.php')]);
+            $this->publishes(
+                [__DIR__.'/../../resources/filesystems/config/config.php' => config_path('filesystems.php')]
+            );
             $this->publishes([__DIR__.'/../../resources/settings/config/config.php' => config_path('settings.php')]);
             $this->publishes([__DIR__.'/../../resources/jwt/config/config.php' => config_path('jwt.php')]);
-            $this->publishes([__DIR__.'/../../resources/permissions/config/config.php' => config_path('permissions.php')]);
-            $this->publishes([__DIR__.'/../../resources/repository/config/config.php' => config_path('repository.php')]);
+            $this->publishes(
+                [__DIR__.'/../../resources/permissions/config/config.php' => config_path('permissions.php')]
+            );
+            $this->publishes(
+                [__DIR__.'/../../resources/repository/config/config.php' => config_path('repository.php')]
+            );
         }
     }
 
@@ -245,16 +300,18 @@ class CoreProvider extends ServiceProvider
      */
     private function setupConfig()
     {
-        config([
-            'filesystems.default' => setting('filesystems_default', config('filesystems.default')),
-            'mail.driver' => setting('mail_driver', config('mail.driver')),
-            'mail.host' => setting('mail_host', config('mail.host')),
-            'mail.port' => setting('mail_port', config('mail.port')),
-            'mail.from.address' => setting('mail_from_address', config('mail.from.address')),
-            'mail.from.name' => setting('mail_from_name', config('mail.from.name')),
-            'mail.encryption' => setting('mail_encryption', config('mail.encryption')),
-            'mail.username' => setting('mail_username', config('mail.username')),
-            'mail.password' => setting('mail_password', config('mail.password')),
-        ]);
+        config(
+            [
+                'filesystems.default' => setting('filesystems_default', config('filesystems.default')),
+                'mail.driver'         => setting('mail_driver', config('mail.driver')),
+                'mail.host'           => setting('mail_host', config('mail.host')),
+                'mail.port'           => setting('mail_port', config('mail.port')),
+                'mail.from.address'   => setting('mail_from_address', config('mail.from.address')),
+                'mail.from.name'      => setting('mail_from_name', config('mail.from.name')),
+                'mail.encryption'     => setting('mail_encryption', config('mail.encryption')),
+                'mail.username'       => setting('mail_username', config('mail.username')),
+                'mail.password'       => setting('mail_password', config('mail.password')),
+            ]
+        );
     }
 }

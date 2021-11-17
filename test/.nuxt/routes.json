@@ -1,0 +1,44 @@
+[
+  {
+    "name": "setting",
+    "path": "/setting",
+    "component": "/Users/nhockizi/FireApps/git/anhphuoc/test/pages/setting/index.vue",
+    "chunkName": "pages/setting/index",
+    "_name": "_12cd3dcc"
+  },
+  {
+    "name": "user",
+    "path": "/user",
+    "component": "/Users/nhockizi/FireApps/git/anhphuoc/test/pages/user/index.vue",
+    "chunkName": "pages/user/index",
+    "_name": "_799baf36"
+  },
+  {
+    "name": "auth-login",
+    "path": "/auth/login",
+    "component": "/Users/nhockizi/FireApps/git/anhphuoc/test/pages/auth/login.vue",
+    "chunkName": "pages/auth/login",
+    "_name": "_6705cd19"
+  },
+  {
+    "name": "user-create",
+    "path": "/user/create",
+    "component": "/Users/nhockizi/FireApps/git/anhphuoc/test/pages/user/create.vue",
+    "chunkName": "pages/user/create",
+    "_name": "_6a71a20e"
+  },
+  {
+    "name": "user-id",
+    "path": "/user/:id",
+    "component": "/Users/nhockizi/FireApps/git/anhphuoc/test/pages/user/_id.vue",
+    "chunkName": "pages/user/_id",
+    "_name": "_5cedffe6"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/nhockizi/FireApps/git/anhphuoc/test/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_57b2ffcb"
+  }
+]

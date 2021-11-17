@@ -1,6 +1,6 @@
 <?php
 
-namespace Kizi\Core\Services;
+namespace Kizi\Core\Services\Provider;
 
 
 use Kizi\Core\Contracts\SettingContract;

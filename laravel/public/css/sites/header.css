@@ -1,0 +1,160 @@
+.header-dot {
+  border-bottom: 2px solid #00a88e;
+  width: 200px;
+  margin: 1.5rem 1rem;
+}
+
+.header-title {
+  color: #ffffff;
+  font-size: 90px;
+  max-width: 600px;
+  line-height: 1;
+  text-transform: uppercase;
+  font-weight: 245px;
+}
+
+.header-nav {
+  list-style: none;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 180%;
+}
+.header-nav li {
+  border-bottom: 2px solid #00a88e;
+}
+.header-nav li a {
+  color: #ffffff;
+}
+.header-nav li a:hover {
+  color: #ffffff;
+}
+
+#carouselHome {
+  background: #00a88e;
+  margin-bottom: 100px;
+}
+#carouselHome .carousel-inner {
+  z-index: 99;
+}
+#carouselHome .carousel-indicators {
+  bottom: -30px;
+  justify-content: end;
+  right: 100px;
+}
+#carouselHome .carousel-control-prev {
+  width: 45%;
+}
+#carouselHome .carousel-control-next {
+  width: 70%;
+}
+#carouselHome .prev-icon i, #carouselHome .next-icon i {
+  color: #00a88e;
+  font-size: 100px;
+  position: absolute;
+  bottom: -100px;
+}
+#carouselHome .next-icon i {
+  left: 0;
+}
+#carouselHome li {
+  width: auto;
+  margin-right: 5px;
+  background: none;
+  text-indent: initial;
+}
+#carouselHome li i {
+  font-size: 10px;
+  color: #00a88e;
+}
+#carouselHome li.active i {
+  border: 2px solid #00a88e;
+  border-radius: 20px;
+  font-size: 5px;
+  padding: 4px;
+  top: -2px;
+  position: relative;
+}
+#carouselHome .carousel-item ul {
+  width: 30%;
+  float: left;
+  list-style: none;
+  padding: 30px;
+  color: #fff;
+}
+#carouselHome .carousel-item ul li {
+  padding-bottom: 15px;
+}
+#carouselHome .carousel-item ul li h3 {
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#carouselHome .carousel-item .item-img {
+  width: 70%;
+  float: right;
+}
+#carouselHome .carousel-item .item-button {
+  width: 150px;
+  color: #00a88e;
+  text-align: left;
+  position: absolute;
+  left: 200px;
+  bottom: 50px;
+  background: #fff;
+}
+#carouselHome .carousel-item .item-button i {
+  position: absolute;
+  left: 120px;
+  bottom: 10px;
+}
+
+#carouselHomeTitle {
+  position: absolute;
+  float: right;
+  width: 180px;
+  text-transform: uppercase;
+  padding: 30px;
+  font-weight: bold;
+  color: #fff;
+  background: #00a88e;
+  font-size: 60px;
+  line-height: 60px;
+  right: 50px;
+  z-index: 99;
+  bottom: -80px;
+}
+
+.area {
+  padding-top: 70px;
+}
+.area img {
+  vertical-align: middle;
+  border-style: none;
+}
+.area img.active {
+  transform: scale(1.1);
+}
+.area .name {
+  width: 100%;
+  font-size: 60px;
+  font-weight: bold;
+  color: #f0f0f0;
+  position: absolute;
+  bottom: 100px;
+  text-align: center;
+}
+.area .title {
+  position: relative;
+  float: right;
+  width: 180px;
+  text-transform: uppercase;
+  padding: 30px;
+  font-weight: bold;
+  color: #fff;
+  background: #00a88e;
+  font-size: 60px;
+  line-height: 60px;
+  bottom: 90px;
+  left: 70px;
+}

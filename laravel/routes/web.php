@@ -13,6 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get(
+//    '/',
+//    function () {
+//        return view('welcome');
+//    }
+//);
+
+//Auth::routes();
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/khu-vuc', [App\Http\Controllers\HomeController::class, 'area'])->name('area');
+
+
+//Route::group(
+//    ['prefix' => 'admin'],
+//    function () use ($file) {
+//        require $file->getPathname();
+//    }
+//);
