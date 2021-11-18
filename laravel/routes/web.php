@@ -22,13 +22,13 @@ use Illuminate\Support\Facades\Route;
 
 //Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/khu-vuc', [App\Http\Controllers\HomeController::class, 'area'])->name('area');
+Route::get('/', [App\Http\Controllers\Storefront\PagesController::class, 'index'])->name('home');
+Route::get('/khu-vuc', [App\Http\Controllers\Storefront\PagesController::class, 'area'])->name('area');
 
-
-//Route::group(
-//    ['prefix' => 'admin'],
-//    function () use ($file) {
-//        require $file->getPathname();
-//    }
-//);
+Route::group(
+    ['prefix' => 'admin'],
+    function () {
+        Route::get('/', [App\Http\Controllers\Admin\PagesController::class, 'index'])->name('admin-home');
+        Route::get('/login', [App\Http\Controllers\Admin\PagesController::class, 'login'])->name('admin-login');
+    }
+);

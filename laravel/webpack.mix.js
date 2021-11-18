@@ -1,5 +1,4 @@
 const mix = require('laravel-mix');
-
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -13,11 +12,20 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .copy('node_modules/font-awesome/fonts/', 'public/fonts')
-    .sass('resources/sass/app.scss', 'public/css')
-    .sass('resources/sass/sites/layout.scss', 'public/css/sites')
-    .sass('resources/sass/sites/header.scss', 'public/css/sites')
-    .sass('resources/sass/sites/header_search.scss', 'public/css/sites')
-    .sass('resources/sass/sites/area.scss', 'public/css/sites')
-    .options({
-        processCssUrls: false
-    });
+    .sass('resources/sass/app.scss', 'public/css/app.css')
+
+/*  storefont  */
+mix.sass('resources/storefont/sass/app.scss', 'public/css/storefont//layoput.css')
+    .sass('resources/storefont/sass/partials/header.scss', 'public/css/storefont//partials')
+    .sass('resources/storefont/sass/partials/header_search.scss', 'public/css/storefont//partials')
+    .sass('resources/storefont/sass/pages/area.scss', 'public/css/storefont/pages')
+/*  end storefont  */
+
+/*  admin  */
+// mix.sass('resources/admin/sass/style.scss', 'public/css/admin')
+//     .sass('resources/admin/sass/pages/login/login-1.scss', 'public/css/admin/pages/login')
+/*  end admin  */
+
+mix.options({
+    processCssUrls: false
+})
