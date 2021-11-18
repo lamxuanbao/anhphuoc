@@ -66,6 +66,7 @@ class CoreProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerRepository();
         $this->registerRouteMiddleware();
+        $this->registerService();
         $this->commands($this->commands);
         $this->app->singleton(
             'responseApi',
@@ -83,7 +84,6 @@ class CoreProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerService();
         $this->app->singleton(
             'setting',
             function () {

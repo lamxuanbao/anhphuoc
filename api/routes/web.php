@@ -22,6 +22,23 @@ use Kizi\Core\Models\Roles;
 use Kizi\Core\Models\Settings;
 
 $router->get('/', function () use ($router) {
+    $email = 'customer@gmail.com';
+    $password = '123123';
+    $input = ['email' => $email, 'password' => $password];
+    $token = auth('customers')->attempt($input);
+    dd($token);
+    $user = auth('customers')->user();
+//    dd($user);
+    dd($token);
+    if (auth('customers')->attempt($input)) {
+        dd(\Illuminate\Support\Facades\Auth::guest());
+    } else {
+        if (Auth::guard('admin')->attempt(['email' => $email, 'password' => $password])) {
+            dd('admin');
+        }
+    }
+
+
     return $router->app->version();
 });
 $router->group(['prefix' => '/'], function () use ($router) {
@@ -35,7 +52,7 @@ $router->group(['prefix' => '/'], function () use ($router) {
                 require $file->getPathname();
             });
         }
-    }catch (Exception $e){
+    } catch (Exception $e) {
 
     }
 });

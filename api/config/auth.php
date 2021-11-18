@@ -1,19 +1,27 @@
 <?php
 return [
     'defaults' => [
-        'guard' => 'api',
+        'guard' => 'admin',
         'passwords' => 'users',
     ],
     'guards' => [
-        'api' => [
+        'admin' => [
             'driver' => 'jwt',
             'provider' => 'users',
+        ],
+        'customers' => [
+            'driver' => 'jwt',
+            'provider' => 'customers',
         ],
     ],
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
             'model' => \Kizi\Core\Models\Users::class
+        ],
+        'customers' => [
+            'driver' => 'eloquent',
+            'model' => \App\Models\Customers::class
         ]
     ]
 ];

@@ -28,7 +28,14 @@ Route::get('/khu-vuc', [App\Http\Controllers\Storefront\PagesController::class, 
 Route::group(
     ['prefix' => 'admin'],
     function () {
-        Route::get('/', [App\Http\Controllers\Admin\PagesController::class, 'index'])->name('admin-home');
         Route::get('/login', [App\Http\Controllers\Admin\PagesController::class, 'login'])->name('admin-login');
+        Route::group(
+            [
+                'middleware' => 'guest:admin'
+            ],
+            function () {
+                Route::get('/', [App\Http\Controllers\Admin\PagesController::class, 'index'])->name('admin-home');
+            }
+        );
     }
 );

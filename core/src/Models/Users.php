@@ -49,7 +49,9 @@ class Users extends Model implements AuthenticatableContract, AuthorizableContra
 
     public function getJWTCustomClaims()
     {
-        return [];
+        return [
+            'kizi_tbl' => ''
+        ];
         // TODO: Implement getJWTCustomClaims() method.
     }
 

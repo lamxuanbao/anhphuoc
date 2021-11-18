@@ -18,7 +18,6 @@ class CreateCustomers extends Migration
             $table->string('email')->unique()->notNullable();
             $table->string('password');
             $table->string('phone')->nullable();
-            $table->string('password_reset')->nullable();
             $table->timestamps();
         });
     }

@@ -19,16 +19,10 @@ export const system = [
         i18n: 'setting'
       },
       {
-        code: 'role',
-        icon: ['fas', 'user-secret'],
-        url: { name: 'role' },
-        i18n: 'roles_and_permissions'
-      },
-      {
-        code: 'user',
+        code: 'customer',
         icon: ['fas', 'users'],
-        url: { name: 'user' },
-        i18n: 'user_list'
+        url: { name: 'customer' },
+        i18n: 'customer_list'
       },
       {
         code: 'province',

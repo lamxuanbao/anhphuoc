@@ -90,10 +90,9 @@ $app->routeMiddleware([
 | totally optional, so you are not required to uncomment this line.
 |
 */
-
+$app->register(\Kizi\Core\Providers\CoreProvider::class);
 $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\EventServiceProvider::class);
-$app->register(\Kizi\Core\Providers\CoreProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

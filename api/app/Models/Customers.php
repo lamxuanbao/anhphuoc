@@ -11,6 +11,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class Customers extends \Kizi\Core\Eloquent\Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
+    protected $guard = 'driver';
     use Authenticatable, Authorizable, HasFactory;
 
     /**

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Kizi\Core\Contracts\Services\UserService;
+use Kizi\Core\CoreManager;
 use Kizi\Core\Models\Users;
 
 class AuthController extends Controller
@@ -31,6 +32,7 @@ class AuthController extends Controller
 
     public function profile()
     {
-        return response_api(Auth::user());
+        $guard = $this->request->header('App-Role') ?? null;
+        return response_api(auth($guard)->user());
     }
 }

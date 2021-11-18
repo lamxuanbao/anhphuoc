@@ -69,10 +69,10 @@ class ProvinceCreateCommand extends Command
                                   ];
                                   try {
                                       $province  = $this->province($data[2], $condition);
-                                      $condition = array_merge($condition, ['province_id' => $province->id]);
-                                      $district  = $this->district($data[1], $condition);
-                                      $condition = array_merge($condition, ['district_id' => $district->id]);
-                                      $this->ward($data[0], $condition);
+//                                      $condition = array_merge($condition, ['province_id' => $province->id]);
+//                                      $district  = $this->district($data[1], $condition);
+//                                      $condition = array_merge($condition, ['district_id' => $district->id]);
+//                                      $this->ward($data[0], $condition);
                                       $this->info(
                                           'memory using : '.number_format(memory_get_peak_usage() / 1048576, 2).' MB'
                                       );
