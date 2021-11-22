@@ -4,16 +4,11 @@ export default {
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'datnhaxuong',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'vi'
     },
     meta: [
       { charset: 'utf-8' },
-      { hid: 'description', name: 'description', content: '' }
-    ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
 
@@ -97,11 +92,13 @@ export default {
       "./scss/*.scss"
     ]
   },
+  publicRuntimeConfig: {
+    baseURL: process.env.API_BASE_URL,
+    tokenKey: process.env.TOKEN_KEY,
+    tokenType: process.env.TOKEN_TYPE
+  },
   axios: {
     baseURL: process.env.API_BASE_URL
-  },
-  env: {
-    baseUrl: process.env.API_BASE_URL
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

@@ -8,10 +8,12 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'administrators',
+    htmlAttrs: {
+      lang: 'vi'
+    },
     meta: [
       { charset: 'utf-8' },
-    ],
+    ]
   },
   /*
   ** Customize the progress bar color
@@ -132,11 +134,13 @@ module.exports = {
       }
     ],
   ],
+  publicRuntimeConfig: {
+    baseURL: process.env.API_BASE_URL,
+    tokenKey: process.env.TOKEN_KEY,
+    tokenType: process.env.TOKEN_TYPE
+  },
   axios: {
     baseURL: process.env.API_BASE_URL
-  },
-  env: {
-    baseUrl: process.env.API_BASE_URL
   },
   toast: {
     position: 'top-right',

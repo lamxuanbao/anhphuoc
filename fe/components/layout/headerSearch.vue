@@ -9,7 +9,7 @@
         </nav>
       </div>
     </div>
-    <div class="d-flex flex-row">
+    <div class="d-flex flex-row position-relative">
       <div class="area">
         <div class="header-dot"></div>
         <div class="title">Khu Vực</div>

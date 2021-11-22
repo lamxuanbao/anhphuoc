@@ -22,21 +22,7 @@ use Kizi\Core\Models\Roles;
 use Kizi\Core\Models\Settings;
 
 $router->get('/', function () use ($router) {
-    $email = 'customer@gmail.com';
-    $password = '123123';
-    $input = ['email' => $email, 'password' => $password];
-    $token = auth('customers')->attempt($input);
-    dd($token);
-    $user = auth('customers')->user();
-//    dd($user);
-    dd($token);
-    if (auth('customers')->attempt($input)) {
-        dd(\Illuminate\Support\Facades\Auth::guest());
-    } else {
-        if (Auth::guard('admin')->attempt(['email' => $email, 'password' => $password])) {
-            dd('admin');
-        }
-    }
+    echo trans('validation.accepted');
 
 
     return $router->app->version();

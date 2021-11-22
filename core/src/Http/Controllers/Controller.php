@@ -31,7 +31,9 @@ class Controller extends BaseController
     ];
     public $request;
     public $repository;
+    protected function setMessage(){
 
+    }
     protected function validation(array $validator = [])
     {
         $this->validate(request(), $validator, $this->messages);

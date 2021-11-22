@@ -3,17 +3,11 @@
     <a-card>
       <accordion>
         <accordion-group :name="$t('basic_information')">
-          <accordion-item :name="$t('general_information')">
-            <lazy-setting-general ref="general" :item="item" />
-          </accordion-item>
-          <accordion-item :name="$t('store')">
+          <accordion-item :name="$t('seo')">
             <lazy-setting-store ref="store" :item="item" />
           </accordion-item>
           <accordion-item :name="$t('image')">
-            <lazy-setting-image ref="seo" :item="item" />
-          </accordion-item>
-          <accordion-item :name="$t('seo')">
-            <!-- <lazy-widget-seo ref="seo" :item="item" /> -->
+            <lazy-setting-image ref="image" :item="item" />
           </accordion-item>
         </accordion-group>
         <template v-slot:footer>
@@ -41,6 +35,7 @@ import _ from "lodash";
 export default {
   data: function() {
     return {
+      loading: false,
       item: {
         company_name: null,
         company_address: null,
@@ -63,6 +58,12 @@ export default {
       title: this.$i18n.t("setting"),
     };
   },
+  fetch() {
+    this.setBreadcrumb([
+      { title: this.$i18n.t("dashboard"), route: "/" },
+      { title: this.$i18n.t("setting") },
+    ]);
+  },
   computed: {
     ...mapGetters({
       setting: "setting/data",
@@ -82,7 +83,7 @@ export default {
     },
     save(e) {
       e.preventDefault();
-      this.$refs.general.$v.$touch();
+      this.$refs.store.$v.$touch();
       // if (this.$refs.general.$v.$invalid) {
       //   return;
       // }
@@ -90,15 +91,17 @@ export default {
       // if (this.$refs.store.$v.$invalid) {
       //   return;
       // }
+      this.loading = true;
       const data = this.$options.filters.convertJsonToFormData(this.item);
       data.append("_method", "PUT");
       this.updateSetting(data)
         .then(() => {
-          this.getSetting();
+          // this.getSetting();
           this.$toast.success(this.$t("save_success"));
+          this.loading = false;
         })
-        .catch(() => {
-          return;
+        .catch((e) => {
+          this.serverErrors = data.errors;
         });
     },
   },

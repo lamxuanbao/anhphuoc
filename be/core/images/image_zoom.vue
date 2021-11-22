@@ -15,7 +15,6 @@
 import _ from "lodash";
 export default {
   mounted() {
-    console.log(this.width);
   },
 };
 </script>

@@ -24,6 +24,29 @@
           </div>
         </div>
       </div>
+      <div class="col-12">
+        <div
+          class="form-group"
+          v-bind:class="[
+            $v.item.address.$error ? 'has-error' : '',
+            serverErrors.address ? 'has-error' : '',
+          ]"
+        >
+          <label> {{ $t("address") }} <span class="text-danger">*</span> </label>
+          <a-input size="large" v-model="item.address" />
+          <div
+            class="ant-form-explain"
+            v-if="$v.item.address.$error || serverErrors.address"
+          >
+            <template v-if="!$v.item.address.required">
+              {{ $t("message_required", { field: $t("address") }) }}
+            </template>
+            <template v-else-if="serverErrors.address">
+              {{ serverErrors.address[0] }}
+            </template>
+          </div>
+        </div>
+      </div>
       <div class="col-6">
         <div class="form-group">
           <label>Loại</label>
@@ -160,6 +183,9 @@ export default {
   validations() {
     var validation = {
       name: {
+        required,
+      },
+      address: {
         required,
       },
       price: {

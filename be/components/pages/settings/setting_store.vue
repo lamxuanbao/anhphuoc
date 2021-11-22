@@ -10,7 +10,7 @@
         <template v-if="$v.item.app_title.$error">
           <div class="ant-form-explain">
             <template v-if="!$v.item.app_title.required">
-              {{ $t("field_is_required") }}
+              {{ $t("message_required", { field: $t("title") }) }}
             </template>
           </div>
         </template>

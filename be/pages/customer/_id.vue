@@ -105,7 +105,6 @@ export default {
       }
       this.loading = true;
       const data = this.$options.filters.data(this.item);
-      console.log(this.id, data);
       this.updateData({
         id: this.id,
         params: data,

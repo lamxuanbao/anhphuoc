@@ -2,6 +2,8 @@ export default ({ store, $axios, $toast, redirect, error }) => {
   $axios.onRequest((config) => {
     const token = store.state.auth.token
     const tokenType = store.state.auth.token_type
+
+    console.log('bao',token,tokenType);
     if (token && tokenType) {
       $axios.setHeader('Authorization', `${tokenType} ${token}`)
     }
@@ -14,6 +16,7 @@ export default ({ store, $axios, $toast, redirect, error }) => {
 
   $axios.onError((e) => {
     const { status, data } = e.response
+    console.log(status,data);
     switch (status) {
       case 401:
         store.commit('auth/logout')
@@ -21,7 +24,6 @@ export default ({ store, $axios, $toast, redirect, error }) => {
       case 422:
         return false
       default:
-        console.log(e);
         return error(
           { statusCode: status, message: data.message }
         )

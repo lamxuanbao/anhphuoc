@@ -1,7 +1,7 @@
 import _ from "lodash";
 const cookieparser = require('cookieparser')
-const TOKEN_KEY = 'admin_token';
-const TOKEN_TYPE = 'admin_token_type';
+const TOKEN_KEY = process.env.TOKEN_KEY
+const TOKEN_TYPE = process.env.TOKEN_TYPE
 export const actions = {
     nuxtServerInit({ commit, dispatch }, { req }) {
         if (req.headers.cookie) {

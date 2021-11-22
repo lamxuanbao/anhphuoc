@@ -27,44 +27,43 @@ class UserService implements \Kizi\Core\Contracts\Services\UserService
                 return response_api(
                     [
                         'email' => [
-                            'Email does not exists',
+                            __('auth.email')
                         ],
                     ],
                     422,
-                    'Email does not exists'
+                    __('auth.email')
                 );
             }
             if (!Hash::check($password, $user->password)) {
                 return response_api(
                     [
                         'password' => [
-                            'Password is incorrect',
+                            __('auth.password')
                         ],
                     ],
                     422,
-                    'Password is not incorrect'
+                    __('auth.password')
                 );
             }
         }
 
         $input = ['email' => $email, 'password' => $password];
         $token = auth($guard)->attempt($input);
-        if (is_null($token)) {
+        if (!$token) {
             return response_api(
                 [
                     'email' => [
-                        'Email does not exists',
+                        __('auth.email')
                     ],
                 ],
                 422,
-                'Email does not exists'
+                __('auth.email')
             );
         }
         return response_api(
             [
                 'token' => $token,
                 'token_type' => 'bearer',
-                'guard' => $guard,
                 'expires_in' => Auth::factory()
                         ->getTTL() * 60,
             ]

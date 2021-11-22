@@ -15,9 +15,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(
-            \Kizi\Core\Contracts\Services\UserService::class,
-            UserService::class
-        );
     }
 }

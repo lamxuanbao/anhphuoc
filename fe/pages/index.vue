@@ -1,8 +1,8 @@
 <template>
   <div>
     <LayoutHeaderInfomation :login="login"></LayoutHeaderInfomation>
-    <div class="container">
-      <client-only>
+    <client-only>
+      <div class="container">
         <a-carousel arrows autoplay dots-class="slick-dots slick-thumb">
           <div slot="prevArrow" slot-scope="props" class="custom-slick-arrow">
             <font-awesome-icon icon="caret-left" />
@@ -13,61 +13,72 @@
           <a slot="customPaging" slot-scope="props">
             <font-awesome-icon icon="circle" />
           </a>
-          <div class="item" v-for="item in 10" :key="item">
+          <div
+            class="item"
+            v-for="(item, index) in items"
+            key="index-item-${index}"
+          >
             <ul>
               <li>
-                <h3>Thuê nhà xưởng</h3>
+                <h3>{{ item.name }}</h3>
               </li>
-              <li>Khu vực : TP.HCM</li>
-              <li>Địa chỉ : Khu công nghiệp Nhị Xuân Hóc Môn</li>
-              <li>Diện tích : 3000m<sup>2</sup></li>
+              <li>Khu vực : {{ item.province.name }}</li>
+              <li>Địa chỉ : {{ item.address }}</li>
+              <li>Diện tích : {{ item.area }} m<sup>2</sup></li>
             </ul>
             <div class="item-img">
-              <image-zoom :src="require('@/assets/images/image1.png')" />
+              <image-zoom v-if="item.images[0]" :src="item.images[0].url" />
+              <image-zoom
+                v-else
+                src="https://via.placeholder.com/468x300?text=..."
+              />
             </div>
-            <a-button class="item-button">
-              Xem thêm
-              <font-awesome-icon icon="long-arrow-alt-right" />
-            </a-button>
+            <router-link :to="item.slug" v-slot="{ href }">
+              <a-button class="btn item-button" :href="href">
+                Xem thêm
+                <font-awesome-icon icon="long-arrow-alt-right" />
+              </a-button>
+            </router-link>
           </div>
         </a-carousel>
         <div class="slide-title">Tin mới</div>
         <div class="clear"></div>
-      </client-only>
-      <div class="row area">
-        <div class="col-md-4 text-center">
-          <img :src="require('@/assets/images/longan.png')" class="w-100" />
-          <div class="name">Long An</div>
+        <div class="row area">
+          <div class="col-md-4 text-center">
+            <img :src="require('@/assets/images/longan.png')" class="w-100" />
+            <div class="name">Long An</div>
+          </div>
+          <div class="col-md-4 text-center">
+            <img
+              :src="require('@/assets/images/hochiminh.png')"
+              class="w-100 active"
+            />
+            <div class="name">TP.HCM</div>
+          </div>
+          <div class="col-md-4 text-center">
+            <img :src="require('@/assets/images/dongnai.png')" class="w-100" />
+            <div class="name">Biên Hoà</div>
+          </div>
+          <div class="title">Khu Vực</div>
         </div>
-        <div class="col-md-4 text-center">
-          <img
-            :src="require('@/assets/images/hochiminh.png')"
-            class="w-100 active"
-          />
-          <div class="name">TP.HCM</div>
-        </div>
-        <div class="col-md-4 text-center">
-          <img :src="require('@/assets/images/dongnai.png')" class="w-100" />
-          <div class="name">Biên Hoà</div>
-        </div>
-        <div class="title">Khu Vực</div>
       </div>
-    </div>
 
-    <LayoutFooter></LayoutFooter>
+      <LayoutFooter></LayoutFooter>
+    </client-only>
   </div>
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
-  data: function () {
+  data: function() {
     return {
-      login : false
+      login: false,
     };
   },
   computed: {
     ...mapGetters({
       auth: "auth/data",
+      items: "property/list",
     }),
   },
   async fetch() {
@@ -76,19 +87,26 @@ export default {
       await this.getAuth()
         .then(() => {
           if (this.auth !== null) {
-            this.login = true
+            this.login = true;
           }
         })
         .catch((e) => {
           this.$store.dispatch("auth/log_out");
         });
     }
+    await this.getData({
+      length: 10,
+      is_active: 1,
+    }).then(() => {
+      console.log(this.items);
+    });
   },
   methods: {
     ...mapActions({
       getAuth: "auth/get_data",
+      getData: "property/get_list",
     }),
-  }
+  },
 };
 </script>
 <style scoped>
@@ -161,15 +179,15 @@ export default {
   width: 100%;
   height: 350px;
 }
-.ant-carousel .item > button {
+.ant-carousel .item > .btn {
   width: 150px;
   color: #00a88e;
   text-align: left;
 }
-.ant-carousel .item > button svg {
+.ant-carousel .item > .btn svg {
   float: right;
   position: relative;
-  top: 3px;
+  top: 9px;
 }
 .ant-carousel .item >>> ul {
   width: 30%;

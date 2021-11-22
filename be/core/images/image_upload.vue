@@ -69,7 +69,6 @@ export default {
       return false;
     },
     handleRemove(file) {
-      console.log(file);
       // this.fileList = fileList;
       // return false;
     },

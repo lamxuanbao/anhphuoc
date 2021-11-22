@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -53,6 +54,9 @@ class Handler extends ExceptionHandler
         $data = [];
         $message = $exception->getMessage();
         $code = $exception->getCode();
+        if($exception instanceof ModelNotFoundException){
+            return response_api(__('validation.not_found',['attribute' => __('validation.attributes.data')]), Response::HTTP_NOT_FOUND);
+        }
         if ($exception instanceof ValidationException) {
             $data = json_decode($exception->getResponse()->getContent());
             $code = Response::HTTP_UNPROCESSABLE_ENTITY;

@@ -1,4 +1,4 @@
-const resource = '/auth'
+const resource = '/customer'
 export default ($axios) => ({
     data() {
         return $axios.$get(`${resource}`)

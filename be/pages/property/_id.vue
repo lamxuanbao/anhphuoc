@@ -85,6 +85,7 @@ export default {
       loading: false,
       item: {
         name: null,
+        address: null,
         area: null,
         type: "buy",
         price: null,

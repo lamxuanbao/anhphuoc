@@ -20,11 +20,7 @@ class Customers extends \Kizi\Core\Eloquent\Model implements AuthenticatableCont
      * @var array
      */
     protected $fillable = [
-        'is_active', 'email', 'password',
-    ];
-
-    protected $casts = [
-        'is_active' => 'boolean',
+        'email', 'password', 'phone'
     ];
     /**
      * The attributes excluded from the model's JSON form.

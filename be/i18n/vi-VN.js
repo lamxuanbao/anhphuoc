@@ -1,4 +1,5 @@
 export default {
+  "update" : "Chỉnh sửa",
   "management_page": 'Trang quản lý',
   "en-US": "Tiếng Anh",
   "vi-VN": "Tiếng Việt",
@@ -62,5 +63,13 @@ export default {
   "permissions": "Quyền",
   "dashboard": "Trang chủ",
   "title": "Tiêu đề",
-  "images" : "Hình ảnh"
+  "images" : "Hình ảnh",
+  "description" : "Mô tả",
+  "keywords" : "Từ khóa",
+  "customer" : "Khách hàng",
+  "customer_information" : "Thông tin khách hàng",
+  "customer_list" : "Danh sách khách hàng",
+  "property" : "Bất động sản",
+  "property_list" : "Danh sách bất động sản",
+  "property_information" : "Thông tin bất động sản"
 }

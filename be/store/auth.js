@@ -1,11 +1,10 @@
 import Cookies from 'js-cookie'
 import _ from "lodash"
-const TOKEN_KEY = 'admin_token';
-const TOKEN_TYPE = 'admin_token_type';
+
 export const state = () => ({
     data: null,
-    token: Cookies.get(TOKEN_KEY),
-    token_type: Cookies.get(TOKEN_TYPE),
+    token: null,
+    token_type: null,
 })
 export const getters = {
     data: state => state.data,
@@ -35,14 +34,14 @@ export const mutations = {
     },
     set_token(state, token) {
         state.token = token
-        Cookies.set(TOKEN_KEY, token)
+        Cookies.set(this.$config.tokenKey, token)
     },
     set_token_type(state, token_type) {
         state.token_type = token_type
-        Cookies.set(TOKEN_TYPE, token_type)
+        Cookies.set(this.$config.tokenType, token_type)
     },
     logout(state) {
-        Cookies.remove(TOKEN_KEY)
-        Cookies.remove(TOKEN_TYPE)
+        Cookies.remove(this.$config.tokenKey)
+        Cookies.remove(this.$config.tokenType)
     },
 }

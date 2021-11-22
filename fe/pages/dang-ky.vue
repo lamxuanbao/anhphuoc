@@ -67,7 +67,7 @@
         <a-button @click="onSave">Xác nhận</a-button>
       </div>
     </article>
-    <LayoutFooter></LayoutFooter>
+    <!-- <LayoutFooter></LayoutFooter> -->
   </div>
 </template>
 <script>

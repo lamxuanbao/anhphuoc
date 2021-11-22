@@ -1,6 +1,24 @@
 <template>
   <Nuxt />
 </template>
+<script>
+import { mapGetters, mapActions } from "vuex";
+export default {
+  computed: {
+    ...mapGetters({
+      setting: "setting/data",
+    }),
+  },
+  head() {
+    let head = {};
+    if (this.setting.app_title) {
+      head.title = this.setting.app_title;
+    }
+    return head;
+  },
+};
+</script>
+
 <style lang="scss">
 #__nuxt,
 #__layout {
@@ -23,5 +41,9 @@ body {
   .ant-modal-close-x {
     color: #fff;
   }
+}
+.item-button {
+  position: relative;
+  z-index: 9999;
 }
 </style>

@@ -50,7 +50,6 @@ export default {
         },
       ];
     }
-    console.log(favicon_url,setting, link);
     return {
       htmlAttrs: {
         ...i18nHead.htmlAttrs,

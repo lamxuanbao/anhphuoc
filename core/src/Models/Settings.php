@@ -53,8 +53,11 @@ class Settings extends Model
         if ($key === 'translations') {
             return static::setTranslatableSettings($value);
         }
+        $translations = config('settings.fields.translations') ?? [];
         $file = config('settings.fields.file') ?? [];
-        if (in_array($key, $file)) {
+        if (in_array($key, $translations)) {
+            return self::saveTranslatableSetting($key , $value , locale());
+        } elseif (in_array($key, $file)) {
             try {
                 if (!is_string($value) && $value->isValid()) {
                     $file = Helpers::uploadFile($value, 'settings');
@@ -75,16 +78,19 @@ class Settings extends Model
         }
     }
 
+    public static function saveTranslatableSetting($key , $value , $locale ){
+        $model = static::updateOrCreate(['key' => $key], [
+            'is_translatable' => true,
+        ]);
+        $model->getTranslationOrNew($locale)
+            ->fill(['value' => $value]);
+        return $model->save();
+    }
     public static function setTranslatableSettings($settings = [])
     {
         foreach ($settings as $locale => $item) {
             foreach ($item as $key => $value) {
-                $model = static::updateOrCreate(['key' => $key], [
-                    'is_translatable' => true,
-                ]);
-                $model->getTranslationOrNew($locale)
-                    ->fill(['value' => $value]);
-                $model->save();
+                self::saveTranslatableSetting($key , $value , $locale);
             }
         }
     }

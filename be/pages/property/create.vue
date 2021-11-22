@@ -66,6 +66,7 @@ export default {
       loading: false,
       item: {
         name: null,
+        address: null,
         area: null,
         type: "buy",
         price: null,
@@ -119,6 +120,7 @@ export default {
           this.loading = false;
         })
         .catch((e) => {
+          const { status, data } = e.response;
           this.serverErrors = data.errors;
         });
     },

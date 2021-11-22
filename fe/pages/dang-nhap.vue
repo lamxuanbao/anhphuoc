@@ -5,41 +5,54 @@
       <h4 class="title mt-3 text-center">Đăng nhập</h4>
       <div
         class="form-group"
-        v-bind:class="{ 'has-error': $v.item.email.$error }"
+        v-bind:class="[
+          $v.item.email.$error ? 'has-error' : '',
+          serverErrors.email ? 'has-error' : '',
+        ]"
       >
         <a-input placeholder="Email" v-model="$v.item.email.$model" />
-        <template v-if="$v.item.email.$error">
+        <template v-if="$v.item.email.$error || serverErrors.email">
           <div class="ant-form-explain">
             <template v-if="!$v.item.email.required">
               {{ $t("message_required", { field: $t("email") }) }}
             </template>
-            <template v-if="!$v.item.email.email">
+            <template v-else-if="!$v.item.email.email">
               {{ $t("message_invalid", { field: $t("email") }) }}
+            </template>
+            <template v-else-if="serverErrors.email">
+              {{ serverErrors.email[0] }}
             </template>
           </div>
         </template>
       </div>
       <div
         class="form-group"
-        v-bind:class="{ 'has-error': $v.item.password.$error }"
+        v-bind:class="[
+          $v.item.password.$error ? 'has-error' : '',
+          serverErrors.password ? 'has-error' : '',
+        ]"
       >
         <a-input
           type="password"
           placeholder="Mật khẩu"
           v-model="$v.item.password.$model"
         />
-        <template v-if="$v.item.password.$error">
+        <template v-if="$v.item.password.$error || serverErrors.password">
           <div class="ant-form-explain">
             <template v-if="!$v.item.password.required">
               {{ $t("message_required", { field: $t("password") }) }}
             </template>
-            <template v-if="!$v.item.password.minLength">
+            <template v-else-if="!$v.item.password.minLength">
               {{ $t("message_min_length", { min_length: 6 }) }}
+            </template>
+            <template v-else-if="serverErrors.password">
+              {{ serverErrors.password[0] }}
             </template>
           </div>
         </template>
       </div>
       <div class="form-group">
+        {{ serverErrors }}
         <router-link class="text-secondary" to="/quen-mat-khau">
           Quên mật khẩu
         </router-link>
@@ -52,7 +65,7 @@
         <a-button @click="onLogin">Xác nhận</a-button>
       </div>
     </article>
-    <LayoutFooter></LayoutFooter>
+    <!-- <LayoutFooter></LayoutFooter> -->
   </div>
 </template>
 <script>
@@ -61,7 +74,7 @@ import { validationMixin } from "vuelidate";
 import { email, minLength, required } from "vuelidate/lib/validators";
 export default {
   mixins: [validationMixin],
-  data: function () {
+  data: function() {
     return {
       item: {
         email: null,

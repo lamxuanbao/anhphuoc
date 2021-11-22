@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Kizi\Core\Entities\Traits\Sluggable;
 use Kizi\Core\Entities\Traits\Translatable;
+use Kizi\Core\Models\Provinces;
 
 class Properties extends Model
 {
@@ -13,13 +14,14 @@ class Properties extends Model
     protected $slugAttribute = 'name';
     public $translationModel = PropertyTranslations::class;
     public $translationForeignKey = 'property_id';
-    protected $translatedAttributes = ['name', 'content', 'keywords', 'description'];
-    protected $with = ['translations'];
+    protected $translatedAttributes = ['name', 'content', 'keywords', 'description','address'];
+    protected $with = ['translations','province','images'];
     protected $fillable = [
         'is_active',
         'type',
         'price',
         'area',
+        'address',
         'province_id',
         'user_id',
         'slug',
@@ -46,5 +48,9 @@ class Properties extends Model
     public function images()
     {
         return $this->hasMany(PropertyImages::class, 'property_id');
+    }
+    public function province()
+    {
+        return $this->hasOne(Provinces::class, 'id','province_id');
     }
 }

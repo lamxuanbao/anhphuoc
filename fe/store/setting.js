@@ -10,12 +10,7 @@ export const actions = {
         await this.$repositories.setting.all(params).then((result) => {
             commit('set_data', result)
         });
-    },
-    async update_data({ commit }, params) {
-        await this.$repositories.setting.update(params).then((result) => {
-            commit('set_data', result)
-        })
-    },
+    }
 }
 export const mutations = {
     set_data(state, data) {

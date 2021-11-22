@@ -45,7 +45,6 @@ export default {
       let remove_files = that.item.remove_files;
       remove_files.push(image.id);
       that.item.remove_files = remove_files;
-      console.log(that.item);
     }
   },
 };

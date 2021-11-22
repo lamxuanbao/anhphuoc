@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PropertyTranslations extends Model
 {
-    protected $fillable = ['name', 'content', 'keywords', 'description'];
+    protected $fillable = ['name', 'content', 'keywords', 'description', 'address'];
 
     public function usesTimestamps(): bool
     {

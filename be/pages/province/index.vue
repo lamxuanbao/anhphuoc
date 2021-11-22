@@ -7,7 +7,7 @@
         :row-key="(record) => record.id"
         :pagination="pagination"
         :data-source="data"
-        :loading="loading"
+        :loading="$fetchState.pending"
         @change="handleTableChange"
       >
         <div slot="status" slot-scope="text, record">
@@ -40,7 +40,6 @@ export default {
       pagination: {
         pageSize: 15,
       },
-      loading: true,
       columns: [
         {
           title: this.$i18n.t("name"),
@@ -67,14 +66,39 @@ export default {
   },
   computed: {
     ...mapGetters({
-      provinces: "province/list",
+      items: "province/list",
     }),
   },
-  mounted() {
-    this.fetch();
+  async fetch() {
+    this.setBreadcrumb([
+      { title: this.$i18n.t("dashboard"), route: "/" },
+      { title: this.$i18n.t("province") },
+    ]);
+    let current = 1;
+    if (this.$route.query.page) {
+      current = parseInt(this.$route.query.page);
+    }
+    const pagination = { ...this.pagination };
+    pagination.current = current;
+    const offset = pagination.pageSize * (pagination.current - 1);
+    await this.getProvinces({
+      length: pagination.pageSize,
+      pagination: true,
+      ...this.$route.query,
+      offset,
+    }).then(() => {
+      pagination.total = this.items.recordsTotal;
+      pagination.length = this.items.length;
+      this.data = this.items.rows;
+      this.pagination = pagination;
+    });
+  },
+  watch: {
+    "$route.query": "$fetch",
   },
   methods: {
     ...mapActions({
+      setBreadcrumb: "app/set_breadcrumb",
       getProvinces: "province/get_list",
       removeProvince: "province/remove_data",
       updateProvince: "province/update_data",
@@ -83,25 +107,12 @@ export default {
       const pager = { ...this.pagination };
       pager.current = pagination.current;
       this.pagination = pager;
-      const start = pagination.pageSize * (pagination.current - 1);
-      this.fetch({
-        start,
-        ...filters,
-      });
-    },
-    fetch(params = {}) {
-      this.loading = true;
-      this.getProvinces({
-        length: this.pagination.pageSize,
-        pagination: 1,
-        ...params,
-      }).then(() => {
-        const pagination = { ...this.pagination };
-        pagination.total = this.provinces.recordsTotal ?? 0;
-        pagination.length = this.provinces.length ?? 0;
-        this.data = this.provinces.rows ?? [];
-        this.pagination = pagination;
-        this.loading = false;
+      this.$router.push({
+        name: "province",
+        query: {
+          page: pagination.current,
+          ...filters,
+        },
       });
     },
     onRemove(id) {
@@ -114,22 +125,64 @@ export default {
         cancelType: "",
         zIndex: 10002,
         onOk: () => {
-          this.removeProvince(id).then(() => {
-            this.fetch();
-          });
+          // this.$axios.$delete("property/" + id).then(() => {
+          //   this.fetch();
+          // });
         },
         onCancel: () => {},
       });
     },
-    changeActive(active, id) {
-      this.loading = true;
-      this.updateProvince({
-        id: id,
-        params: { is_active: Number(active) },
-      }).then(() => {
-        this.loading = false;
-      });
-    },
+    // handleTableChange(pagination, filters) {
+    //   const pager = { ...this.pagination };
+    //   pager.current = pagination.current;
+    //   this.pagination = pager;
+    //   const start = pagination.pageSize * (pagination.current - 1);
+    //   this.fetch({
+    //     start,
+    //     ...filters,
+    //   });
+    // },
+    // fetch(params = {}) {
+    //   this.loading = true;
+    //   this.getProvinces({
+    //     length: this.pagination.pageSize,
+    //     pagination: 1,
+    //     ...params,
+    //   }).then(() => {
+    //     const pagination = { ...this.pagination };
+    //     pagination.total = this.provinces.recordsTotal ?? 0;
+    //     pagination.length = this.provinces.length ?? 0;
+    //     this.data = this.provinces.rows ?? [];
+    //     this.pagination = pagination;
+    //     this.loading = false;
+    //   });
+    // },
+    // onRemove(id) {
+    //   this.$confirm({
+    //     title: this.$i18n.t("delete_data"),
+    //     content: this.$i18n.t("are_you_sure_delete_data"),
+    //     okText: this.$i18n.t("delete"),
+    //     okType: "danger",
+    //     cancelText: this.$i18n.t("cancel"),
+    //     cancelType: "",
+    //     zIndex: 10002,
+    //     onOk: () => {
+    //       this.removeProvince(id).then(() => {
+    //         this.fetch();
+    //       });
+    //     },
+    //     onCancel: () => {},
+    //   });
+    // },
+    // changeActive(active, id) {
+    //   this.loading = true;
+    //   this.updateProvince({
+    //     id: id,
+    //     params: { is_active: Number(active) },
+    //   }).then(() => {
+    //     this.loading = false;
+    //   });
+    // },
   },
 };
 </script>

@@ -19,6 +19,7 @@ class PropertyTranslations extends Migration
                 $table->id();
                 $table->string('locale', 20);
                 $table->string('name');
+                $table->text('address');
                 $table->longText('content');
                 $table->bigInteger('property_id')
                       ->unsigned();

@@ -6,6 +6,7 @@ export default ({ store, $axios, $toast, redirect, error }) => {
       $axios.setHeader('Authorization', `${tokenType} ${token}`)
     }
     $axios.setHeader('Accept-Language', 'vi')
+    $axios.setHeader('App-Role', 'customers')
     return config
   })
   $axios.onResponse((response) => {
@@ -21,10 +22,9 @@ export default ({ store, $axios, $toast, redirect, error }) => {
       case 422:
         return false
       default:
-        console.log(data.message)
-        // return error(
-        //   { statusCode: status, message: data.message }
-        // )
+        return error(
+          { statusCode: status, message: data.message }
+        )
     }
   })
 }

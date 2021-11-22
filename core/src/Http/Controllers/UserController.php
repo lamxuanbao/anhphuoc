@@ -25,12 +25,10 @@ class UserController extends Controller
                 'password'              => [
                     'required',
                     'min:6',
-                    'max:20',
                 ],
                 'password_confirmation' => [
                     'required_with:password',
                     'min:6',
-                    'max:20',
                     'same:password',
                 ],
                 'is_active'             => [
