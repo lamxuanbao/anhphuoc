@@ -21,4 +21,21 @@ class Setting extends Model
             return static::all()->pluck('value', 'key');
         });
     }
+
+    public static function setMany($settings)
+    {
+        foreach ($settings as $key => $value) {
+            self::set($key, $value);
+        }
+    }
+
+    public static function set($key, $value)
+    {
+        static::updateOrCreate(['key' => $key], ['value' => serialize($value)]);
+    }
+
+    public function getValueAttribute()
+    {
+        return unserialize($this->attributes['value']);
+    }
 }

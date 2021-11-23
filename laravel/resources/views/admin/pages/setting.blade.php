@@ -34,10 +34,10 @@
                                         </label>
                                         <div class="col-9">
                                             <input class="form-control form-control-lg form-control-solid"
-                                                   type="text" value="{{ old('title',setting('title')) }}">
+                                                   type="text" name="title" value="{{ old('title',setting('title')) }}">
                                             @error('title')
                                             <div class="fv-plugins-message-container">
-                                                <div data-field="email" data-validator="notEmpty" class="fv-help-block">
+                                                <div data-field="title" data-validator="notEmpty" class="fv-help-block">
                                                     {{ $message }}
                                                 </div>
                                             </div>

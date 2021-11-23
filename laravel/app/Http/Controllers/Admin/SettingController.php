@@ -17,7 +17,6 @@ class SettingController extends Controller
 
     public function update(UpdateSettingRequest $request)
     {
-        dd(12);
         setting($request->except('_token', '_method'));
         return redirect()->route('admin.setting');
     }
