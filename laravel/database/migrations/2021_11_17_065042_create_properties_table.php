@@ -23,6 +23,7 @@ class CreatePropertiesTable extends Migration
                 $table->enum('type', ['buy', 'rent'])
                       ->default('buy');
                 $table->string('name');
+                $table->text('address');
                 $table->longText('content');
                 $table->bigInteger('property_id')
                       ->unsigned();
@@ -30,11 +31,9 @@ class CreatePropertiesTable extends Migration
                       ->nullable();
                 $table->longText('description')
                       ->nullable();
-                $table->decimal('area', 10, 2);
-                $table->bigInteger('price');
+                $table->decimal('area', 18, 2);
+                $table->decimal('price', 18, 2);
                 $table->boolean('is_active')
-                      ->default(false);
-                $table->boolean('is_default')
                       ->default(false);
                 $table->bigInteger('created_by')
                       ->nullable()

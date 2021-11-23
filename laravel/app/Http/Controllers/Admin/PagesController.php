@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {
+    public $guard = 'admin';
     /**
      * Create a new controller instance.
      *
@@ -14,7 +16,7 @@ class PagesController extends Controller
      */
     public function __construct()
     {
-//        $this->middleware('auth');
+        $this->middleware('auth:admin');
     }
 
     /**
@@ -24,11 +26,9 @@ class PagesController extends Controller
      */
     public function index()
     {
-        $page_title = 'fontawesome';
-        $page_description = 'This is fontawesome test page';
-
-        return view('admin.pages.home', compact('page_title', 'page_description'));
+        return redirect()->route('admin.property');
     }
+
     public function login()
     {
         return view('admin.pages.login');
