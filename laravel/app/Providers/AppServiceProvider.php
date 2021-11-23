@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Manager\SettingManager;
+use App\Models\Setting;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,7 +16,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton('setting', function () {
+            return new SettingManager(Setting::allCached());
+        });
     }
 
     /**
