@@ -18,10 +18,11 @@ class Customer extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
+        'name',
+        'phone',
         'email',
         'password',
-        'token_reset',
-        'phone',
+        'token_reset'
     ];
 
     /**
@@ -31,5 +32,6 @@ class Customer extends Authenticatable
      */
     protected $hidden = [
         'password',
+        'token_reset',
     ];
 }

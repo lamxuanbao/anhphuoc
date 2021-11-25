@@ -16,6 +16,10 @@ body {
     background-size: 100%;
 }
 
+body > .container {
+    min-width: 980px;
+}
+
 .container {
     position: relative;
     clear: both;
@@ -54,4 +58,15 @@ body {
 
 .bg-none {
     background: none;
+}
+
+.color-main {
+    color: #00a88e;
+}
+.btn-main {
+    background: #00a88e;
+    color: #ffffff;
+}
+a{
+    text-decoration: none !important;
 }

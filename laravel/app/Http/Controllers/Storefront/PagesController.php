@@ -14,7 +14,7 @@ class PagesController extends Controller
      */
     public function __construct()
     {
-//        $this->middleware('auth');
+
     }
 
     /**
@@ -24,11 +24,11 @@ class PagesController extends Controller
      */
     public function index()
     {
-        return view('storefront.pages.home');
+        return view('storefront.pages.home')->withTitle(setting('title'));
     }
 
     public function area()
     {
-        return view('storefront.pages.area');
+        return view('storefront.pages.area')->withTitle(setting('title'));
     }
 }

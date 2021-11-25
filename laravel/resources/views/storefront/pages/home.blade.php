@@ -19,7 +19,7 @@
                 <div class="carousel-item active">
                     <ul>
                         <li>
-                            <h3>Thuê nhà xưởng</h3>
+                            <h3>Thuê nhà xưởng {{$title}}</h3>
                         </li>
                         <li>Khu vực : TP.HCM</li>
                         <li>Địa chỉ : Khu công nghiệp Nhị Xuân Hóc Môn</li>
@@ -86,4 +86,5 @@
             <div class="title">Khu Vực</div>
         </div>
     </div>
+    @include('storefront.layouts.partials._footer')
 @endsection

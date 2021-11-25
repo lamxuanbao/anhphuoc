@@ -20,12 +20,12 @@
                 class="login-content flex-row-fluid d-flex flex-column justify-content-center position-relative overflow-hidden p-7 mx-auto">
                 <div class="d-flex flex-column-fluid flex-center">
                     <div class="login-form login-signin">
-                        <form method="POST" action="{{ route('admin.login') }}" id="kt_login_signin_form" novalidate="novalidate">
+                        <form method="POST" action="{{ route('admin.login') }}" id="kt_login_signin_form" novalidate="novalidate" enctype="multipart/form-data">
                             {{ method_field('PUT') }}
                             @csrf
                             <div class="pb-13 pt-lg-0 pt-5">
                                 <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">
-                                    Welcome to Metronic
+                                    Chào mừng
                                 </h3>
                             </div>
                             <div class="form-group">
@@ -42,17 +42,18 @@
                             </div>
                             <div class="form-group">
                                 <div class="d-flex justify-content-between mt-n5">
-                                    <label class="font-size-h6 font-weight-bolder text-dark pt-5">Password</label>
-
-                                    <a href="javascript:;"
-                                       class="text-primary font-size-h6 font-weight-bolder text-hover-primary pt-5"
-                                       id="kt_login_forgot">
-                                        Forgot Password ?
-                                    </a>
+                                    <label class="font-size-h6 font-weight-bolder text-dark pt-5">Mật khẩu</label>
                                 </div>
 
                                 <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg" type="password"
-                                       name="password" autocomplete="off"/>
+                                       name="password" {{ old('password') }} autocomplete="off"/>
+                                @error('password')
+                                <div class="fv-plugins-message-container">
+                                    <div data-field="email" data-validator="notEmpty" class="fv-help-block">
+                                        {{ $message }}
+                                    </div>
+                                </div>
+                                @enderror
                             </div>
                             <div class="pb-lg-0 pb-5">
                                 <button type="submit" id="kt_login_signin_submit"

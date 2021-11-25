@@ -34,16 +34,25 @@
                 <div class="p-2 bd-highlight header-title">Phước đất nhà xưởng</div>
                 <div class="p-2 bd-highlight">
                     <ul class="header-nav">
-                        <li>
-                            Thoat
-                            <!--<a @click="onLogout"> Thoát </a>-->
-                        </li>
-                        <li>
-                            <a href="/dang-ky"> Đăng ký </a>
-                        </li>
-                        <li>
-                            <a href="/dang-nhap"> Đăng nhập </a>
-                        </li>
+                        @auth('customers')
+                            <li>
+                                <a href="{{route('auth.me')}}">Thông tin</a>
+                            </li>
+                            <li>
+                                <a href="{{route('auth.property')}}">Bất động sản</a>
+                            </li>
+                            <li>
+                                <a href="{{route('logout')}}">Thoát</a>
+                            </li>
+                        @endauth
+                        @guest('customers')
+                            <li>
+                                <a href="{{route('register')}}">Đăng ký</a>
+                            </li>
+                            <li>
+                                <a href="{{route('login')}}">Đăng nhập</a>
+                            </li>
+                        @endguest
                     </ul>
                 </div>
             </div>

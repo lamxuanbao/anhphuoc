@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Kizi\Core\Libraries\Helpers;
 
 class Setting extends Model
 {
@@ -31,7 +32,19 @@ class Setting extends Model
 
     public static function set($key, $value)
     {
-        static::updateOrCreate(['key' => $key], ['value' => serialize($value)]);
+        $file = ['logo', 'favicon'];
+        if (in_array($key, $file)) {
+            try {
+                if (!is_string($value) && $value->isValid()) {
+                    $file = \App\Libraries\Helpers::uploadFile($value, 'settings');
+                    unset($file['url']);
+                    static::updateOrCreate(['key' => $key], ['value' => serialize($file)]);
+                }
+            } catch (\Exception $e) {
+            }
+        } else {
+            static::updateOrCreate(['key' => $key], ['value' => serialize($value)]);
+        }
     }
 
     public function getValueAttribute()

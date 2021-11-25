@@ -15,7 +15,7 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css/app.css')
 
 /*  storefont  */
-mix.sass('resources/storefont/sass/app.scss', 'public/css/storefont//layoput.css')
+mix.sass('resources/storefont/sass/app.scss', 'public/css/storefont/layout.css')
     .sass('resources/storefont/sass/partials/header.scss', 'public/css/storefont//partials')
     .sass('resources/storefont/sass/partials/header_search.scss', 'public/css/storefont//partials')
     .sass('resources/storefont/sass/pages/area.scss', 'public/css/storefont/pages')

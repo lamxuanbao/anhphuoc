@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -30,7 +30,7 @@ class LoginController extends Controller
      * @var string
      */
 
-    protected $redirectTo = 'admin';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -40,27 +40,27 @@ class LoginController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest:admin')->except('logout');
+        $this->middleware('guest:customers')->except('logout');
     }
 
     public function guard()
     {
-        return Auth::guard('admin');
+        return Auth::guard('customers');
     }
 
     public function showLoginForm()
     {
-        return view('admin.pages.login');
+        return view('storefront.pages.login')->withTitle(setting('title'));
     }
 
     protected function loggedOut(Request $request) {
-        return redirect()->route('admin.login');
+        return redirect()->route('login');
     }
 
     protected function validateLogin(Request $request)
     {
         $request->validate([
-            $this->username() => 'required|string|email|exists:users,email',
+            $this->username() => 'required|string|email|exists:customers,email',
             'password' => 'required|string|min:6',
         ]);
     }

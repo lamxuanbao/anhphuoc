@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateSettingRequest;
+use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
@@ -15,7 +15,7 @@ class SettingController extends Controller
         return view('admin.pages.setting',compact('settings'))->withTitle('Cấu hình');
     }
 
-    public function update(UpdateSettingRequest $request)
+    public function update(Request $request)
     {
         setting($request->except('_token', '_method'));
         return redirect()->route('admin.setting');

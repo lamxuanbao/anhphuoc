@@ -25,31 +25,18 @@ use Illuminate\Support\Facades\Route;
 Route::namespace('App\Http\Controllers\Storefront')->group(function () {
     Route::get('/', 'PagesController@index')->name('home');
     Route::get('/khu-vuc', 'PagesController@area')->name('area');
-//    Route::get('/login', 'LoginController@showLoginForm');
-//    Route::post('/login', 'LoginController@login')->name('user.login');
-//    Route::group(['middleware' => ['auth']], function () {
-//        Route::get('/home', 'HomeController@index');
-//    });
+    Route::get('/dang-nhap', 'LoginController@showLoginForm')->name('login');
+    Route::put('/dang-nhap', 'LoginController@login');
+    Route::get('/dang-ky', 'RegisterController@showRegistrationForm')->name('register');
+    Route::put('/dang-ky', 'RegisterController@register');
+    Route::get('/logout', 'LoginController@logout')->name('logout');
+
+    Route::group(
+        ['prefix' => 'auth'],
+        function () {
+            Route::get('/', 'AuthController@index')->name('auth.me');
+            Route::put('/', 'AuthController@update');
+            Route::get('/property', 'PropertyController@index')->name('auth.property');
+        }
+    );
 });
-
-//Route::get('/', [App\Http\Controllers\Storefront\PagesController::class, 'index'])->name('home');
-//Route::get('/khu-vuc', [App\Http\Controllers\Storefront\PagesController::class, 'area'])->name('area');
-//
-//Route::group(
-//    ['prefix' => 'admin'],
-//    function () {
-//        Route::get('/login', [App\Http\Controllers\Admin\PagesController::class, 'login'])->name('admin.login');
-//        Route::group(
-//            [
-//                'middleware' => 'guest:admin'
-//            ],
-//            function () {
-//                Route::get('/', [App\Http\Controllers\Admin\PagesController::class, 'index'])->name('admin.home');
-//            }
-//        );
-//    }
-//);
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
