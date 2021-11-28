@@ -5,6 +5,13 @@
         data-menu-vertical="1"
         data-menu-scroll="1" data-menu-dropdown-timeout="500">
         <ul class="menu-nav ">
+            <li class="menu-item {{ (strpos(\Request::route()->getName(),'admin.province') !== false) ? 'menu-item-active' : ''  }}" aria-haspopup="true">
+                <a href="{{route('admin.province')}}" class="menu-link ">
+                    <span class="menu-text">
+                        Tỉnh/Thành phố
+                    </span>
+                </a>
+            </li>
             <li class="menu-item {{ (strpos(\Request::route()->getName(),'admin.property') !== false) ? 'menu-item-active' : ''  }}" aria-haspopup="true">
                 <a href="{{route('admin.property')}}" class="menu-link ">
                     <span class="menu-text">

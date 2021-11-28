@@ -1,5 +1,6 @@
 window._ = require('lodash');
-
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic/build/ckeditor';
+window.ClassicEditor = ClassicEditor;
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -15,6 +16,11 @@ try {
     $('.select2').select2({
         theme: "bootstrap"
     });
+    ClassicEditor
+        .create(document.querySelector('.wysiwyg'))
+        .catch(error => {
+            console.log(`error`, error)
+        });
 } catch (e) {}
 
 /**

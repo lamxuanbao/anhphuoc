@@ -11309,13 +11309,14 @@ body > .container {
 }
 
 .color-main {
-    color: #00a88e;
-}
-.btn-main {
-    background: #00a88e;
-    color: #ffffff;
+  color: #00a88e;
 }
 
-a{
-    text-decoration: none !important;
+.btn-main {
+  background: #00a88e;
+  color: #ffffff;
+}
+
+a {
+  text-decoration: none !important;
 }
