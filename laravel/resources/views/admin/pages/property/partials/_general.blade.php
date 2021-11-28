@@ -56,7 +56,7 @@
             <div class="col-9">
                 <input class="form-control form-control-lg form-control-solid"
                        type="text" name="area"
-                       value="{{ old('area',$property->area) }}">
+                       value="{{ old('area',floatval($property->area)) }}">
                 @error('area')
                 <div class="fv-plugins-message-container">
                     <div data-field="title" data-validator="notEmpty" class="fv-help-block">
@@ -73,7 +73,7 @@
             <div class="col-9">
                 <input class="form-control form-control-lg form-control-solid"
                        type="text" name="price"
-                       value="{{ old('price',$property->price) }}">
+                       value="{{ old('price',floatval($property->price)) }}">
                 @error('price')
                 <div class="fv-plugins-message-container">
                     <div data-field="title" data-validator="notEmpty" class="fv-help-block">
@@ -114,6 +114,17 @@
                     </div>
                 </div>
                 @enderror
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-3 text-lg-right text-left">
+                Logo
+            </label>
+            <div class="col-9">
+                <div
+                    style="cursor:pointer; position: relative; width: 100px; height: 100px; line-height: 30px; text-align: center;">
+                    <input type="file" name="image" class="form-control" placeholder="image">
+                </div>
             </div>
         </div>
     </div>

@@ -1,3 +1,14 @@
+@php
+    if(!isset($search)){
+        $search = [
+            'title'       => null,
+            'price'       => null,
+            'type'        => null,
+            'province_id' => null,
+            'area'        => null,
+        ];
+    }
+@endphp
 <div class="container header-search">
     <div class="row">
         <div class="col-md-12">
@@ -14,46 +25,55 @@
             <div class="title">Khu Vực</div>
         </div>
         <div class="w-100">
-            <div class="d-flex flex-row pb-3">
-                <div class="col-md-9">
-                    <input class="form-control" placeholder="Tên" class="w-100" />
+            <form method="GET" action="{{ route('area') }}" novalidate="novalidate"
+                  enctype="multipart/form-data">
+                <div class="d-flex flex-row pb-3">
+                    <div class="col-md-9">
+                        <input class="form-control" name="title" placeholder="Tên" class="w-100" value="{{$search['title']}}"/>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-control select2" data-placeholder="Loại" name="type">
+                            <option></option>
+                            <option value="buy" {{($search['type'] == 'buy') ? 'selected="selected' : ''}}>Mua</option>
+                            <option value="rent" {{($search['type'] == 'rent') ? 'selected="selected' : ''}}>Thuê</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <select class="form-control select2" data-placeholder="Loại">
-                        <option></option>
-                        <option value="jack"> Jack (100) </option>
-                        <option value="lucy"> Lucy (101) </option>
-                    </select>
+                <div class="d-flex flex-row pb-3">
+                    <div class="col-md-4">
+                        <select class="form-control select2" data-placeholder="Tỉnh/Thành" name="provine_id">
+                            <option></option>
+                            @php
+                                $province = \App\Models\Province::all();
+                            @endphp
+                            @foreach($province as $item)
+                                <option value="{{$item->id}}" {{($search['province_id'] == $item->id) ? 'selected="selected' : ''}}>{{$item->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control select2" data-placeholder="Diện tích" name="area">
+                            <option></option>
+                            @php
+                                $area = [
+                                    '<1000','1000-5000','>5000'
+                                ]
+                            @endphp
+                            @foreach($area as $item)
+                                <option value="{{$item}}">{{$item}} m<sup>2</sup></option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="number" class="form-control" name="price" placeholder="Giá" class="w-100" value="{{$search['price']}}"/>
+                    </div>
                 </div>
-            </div>
-            <div class="d-flex flex-row pb-3">
-                <div class="col-md-4">
-                    <select class="form-control select2" data-placeholder="Tỉnh/Thành">
-                        <option></option>
-                        <option value="jack"> Jack (100) </option>
-                        <option value="lucy"> Lucy (101) </option>
-                    </select>
+                <div class="d-flex flex-row-reverse">
+                    <div class="col-md-4 text-right">
+                        <button type="submit" class="btn btn-search">Tìm kiếm</button>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <select class="form-control select2" data-placeholder="Diện tích">
-                        <option></option>
-                        <option value="jack"> Jack (100) </option>
-                        <option value="lucy"> Lucy (101) </option>
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <select class="form-control select2" data-placeholder="Giá">
-                        <option></option>
-                        <option value="jack"> Jack (100) </option>
-                        <option value="lucy"> Lucy (101) </option>
-                    </select>
-                </div>
-            </div>
-            <div class="d-flex flex-row-reverse">
-                <div class="col-md-4 text-right">
-                    <button class="btn btn-search">Tìm kiếm</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

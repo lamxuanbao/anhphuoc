@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Property;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,5 +16,6 @@ class DatabaseSeeder extends Seeder
     {
          \App\Models\User::factory(10)->create();
          \App\Models\Customer::factory(100)->create();
+         \App\Models\Property::factory(20)->create();
     }
 }

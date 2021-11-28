@@ -9,6 +9,7 @@
 
     <title>@yield('title', $title ?? '')</title>
 
+    @yield('meta')
     <!-- Scripts -->
 
     <!-- Fonts -->

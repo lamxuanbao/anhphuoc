@@ -39,4 +39,5 @@ Route::namespace('App\Http\Controllers\Storefront')->group(function () {
             Route::get('/property', 'PropertyController@index')->name('auth.property');
         }
     );
+    Route::get('/khu-vuc/{slug}', 'PagesController@detail')->name('detail');
 });

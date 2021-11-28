@@ -11267,7 +11267,7 @@ body {
   background-size: 100%;
 }
 
-body > .container {
+body .container {
   min-width: 980px;
 }
 
@@ -11319,4 +11319,9 @@ body > .container {
 
 a {
   text-decoration: none !important;
+}
+
+.navbar-expand-lg .navbar-collapse {
+  display: flex !important;
+  flex-basis: auto;
 }

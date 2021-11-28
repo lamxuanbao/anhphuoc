@@ -24,13 +24,11 @@ class CreatePropertiesTable extends Migration
                       ->default('buy');
                 $table->string('title');
                 $table->longText('keywords')
-                    ->nullable();
+                      ->nullable();
                 $table->longText('description')
-                    ->nullable();
+                      ->nullable();
                 $table->text('address');
                 $table->longText('content');
-                $table->bigInteger('property_id')
-                      ->unsigned();
                 $table->decimal('area', 18, 2);
                 $table->decimal('price', 18, 2);
                 $table->boolean('is_active')

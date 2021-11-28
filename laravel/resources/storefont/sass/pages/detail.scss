@@ -1,0 +1,83 @@
+.content {
+    background-color: rgba(229, 230, 236, 0.5);
+    height: 100%;
+    position: relative;
+    .item {
+        background: #faf8ee;
+
+        img {
+            width: 100%;
+            height: 300px;
+        }
+        ul {
+            width: 100%;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            li {
+                line-height: 40px;
+            }
+        }
+        .badge {
+            cursor: pointer;
+            border: 2px solid #00a88e;
+            color: #00a88e;
+            background: transparent;
+            font-size: 20px;
+            padding: 5px;
+        }
+    }
+    //
+    //#carouselHome {
+    //    background: #00a88e;
+    //    margin-bottom: 100px;
+    //
+    //    .carousel-inner {
+    //        z-index: 99;
+    //    }
+    //    .carousel-indicators {
+    //        bottom: -30px;
+    //        justify-content: end;
+    //        right: 100px;
+    //    }
+    //    .carousel-control-prev {
+    //        width: 70%;
+    //        z-index: 99;
+    //    }
+    //    .carousel-control-next {
+    //        width: 50%;
+    //        z-index: 99;
+    //    }
+    //    .prev-icon, .next-icon {
+    //        i {
+    //            color: #00a88e;
+    //            font-size: 100px;
+    //            position: absolute;
+    //            bottom: 0px;
+    //            z-index: 999;
+    //        }
+    //    }
+    //
+    //    .next-icon {
+    //        i {
+    //            left: 0;
+    //        }
+    //    }
+    //}
+    //
+    //#carouselHomeTitle {
+    //    position: absolute;
+    //    float: right;
+    //    width: 180px;
+    //    text-transform: uppercase;
+    //    padding: 30px;
+    //    font-weight: bold;
+    //    color: #fff;
+    //    background: #00a88e;
+    //    font-size: 60px;
+    //    line-height: 60px;
+    //    right: 50px;
+    //    z-index: 99;
+    //    bottom: -80px;
+    //}
+}

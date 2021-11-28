@@ -53,6 +53,9 @@ Route::namespace('App\Http\Controllers\Admin')->group(function () {
                 Route::get('/', 'PropertyController@index')->name('admin.property');
                 Route::get('/create', 'PropertyController@create')->name('admin.property.create');
                 Route::put('/create', 'PropertyController@store');
+                Route::get('/update/{id}', 'PropertyController@edit')->name('admin.property.update');
+                Route::put('/update/{id}', 'PropertyController@update');
+                Route::get('/delete/{id}', 'PropertyController@destroy')->name('admin.property.delete');
             }
         );
     });

@@ -11,10 +11,10 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        $customers = Customer::orderBy('id')->paginate(15);
+        $customer = Customer::orderBy('id')->paginate(15);
 
         return view('admin.pages.customer.index', [
-            'customers' => $customers
+            'customer' => $customer
         ])->withTitle('Danh sách khách hàng');
     }
 }

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <form method="POST" action="{{ route('admin.property.create') }}" novalidate="novalidate" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('admin.property.update',$property->id) }}" novalidate="novalidate" enctype="multipart/form-data">
             {{ method_field('PUT') }}
             @csrf
             <div class="card card-custom">

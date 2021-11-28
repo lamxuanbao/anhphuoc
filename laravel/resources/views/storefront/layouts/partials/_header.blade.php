@@ -5,22 +5,10 @@
                 <a class="navbar-brand" href="/">
                     <img src="{{asset('images/logo.png')}}"/>
                 </a>
-                <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
                 <div class="collapse navbar-collapse flex-row-reverse">
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control" style="width: 200px; padding-right: 30px"/>
-                        <button class="fa fa-search"
+                    <form class="form-inline my-2 my-lg-0" method="GET" action="{{ route('area') }}" novalidate="novalidate" enctype="multipart/form-data">
+                        <input class="form-control" name="title" style="width: 200px; padding-right: 30px"/>
+                        <button type="submit" class="fa fa-search"
                                 style="background: no-repeat;position: absolute;border: none;right: 20px;"></button>
                     </form>
                 </div>

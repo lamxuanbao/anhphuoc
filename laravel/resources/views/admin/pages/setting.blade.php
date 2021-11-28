@@ -108,7 +108,12 @@
                                             <div
                                                 style="cursor:pointer; position: relative; width: 100px; height: 100px; line-height: 30px; text-align: center;">
                                                 <div class="images-preview preview-favicon">
-                                                    <img src="{{setting('favicon',asset('images/default.png'))}}">
+                                                    @if(isset($settings['favicon']))
+                                                        <img
+                                                            src="{{ \App\Libraries\Helpers::getFileUrl($settings['favicon']['path'], $settings['favicon']['disk'])  }}">
+                                                    @else
+                                                        <img src="{{asset('images/default.png')}}">
+                                                    @endif
                                                 </div>
                                                 <input id="app_favicon" name="favicon" type="file"
                                                        style="opacity: 0.0; position: absolute; top:0; left: 0; bottom: 0; right:0; width: 100%; height:100%;"/>
@@ -266,7 +271,6 @@
 @push('scripts')
     <script>
         $(function () {
-// Multiple images preview with JavaScript
             var previewImages = function (input, imgPreviewPlaceholder) {
                 if (input.files) {
                     var filesAmount = input.files.length;
