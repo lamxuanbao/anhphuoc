@@ -5,6 +5,7 @@
 @endsection
 @section('content')
     @include('storefront.layouts.partials._header')
+    @if(count($property) > 0)
     <div class="container">
         <div id="carouselHome" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -50,6 +51,7 @@
         </div>
         <div id="carouselHomeTitle">Tin mới</div>
     </div>
+    @endif
     <div class="container">
         <div class="row area">
             <div class="col-md-4 text-center">
