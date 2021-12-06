@@ -58,7 +58,6 @@
     </style>
 @endpush
 @push('scripts')
-    <script src="{{ asset('js/admin/dropzonejs.js') }}"></script>
     <script>
         $(function () {
 // Multiple images preview with JavaScript

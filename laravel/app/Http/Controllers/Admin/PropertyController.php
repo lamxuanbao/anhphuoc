@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Property;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class PropertyController extends Controller
@@ -57,7 +58,23 @@ class PropertyController extends Controller
             ]
         ])->validate();
         $params = $request->except('_token', '_method');
-        dd($params);
+        $property = new Property();
+        $property->fill($params);
+        $property->save();
+        try {
+            $images = $request->get('images_data');
+            foreach ($images as &$item){
+                $item = json_decode($item,true);
+                Storage::move($item['path'], str_replace('tmp/','property/',$item['path']));
+                $item['path'] = str_replace('tmp/','property/',$item['path']);
+            }
+            $property->images()
+                ->createMany($images);
+        }catch (\Exception $e){}
+
+        dd(1);
+
+//        dd($params);
     }
 
     public function edit($id)
@@ -97,7 +114,24 @@ class PropertyController extends Controller
                 'required',
             ]
         ])->validate();
-        Property::findOrFail($id)->update($request->except('_token', '_method'));
+        $params = $request->except('_token', '_method');
+        $property = Property::findOrFail($id);
+        $property->fill($params);
+        $property->save();
+        try {
+            $property->images()->delete();
+            $images = $request->get('images_data');
+            foreach ($images as &$item){
+                $item = json_decode($item,true);
+                if(strpos($item['path'], 'tmp/') !== false) {
+                    dd(1);
+                    Storage::move($item['path'], str_replace('tmp/', 'property/', $item['path']));
+                    $item['path'] = str_replace('tmp/', 'property/', $item['path']);
+                }
+            }
+            $property->images()
+                ->createMany($images);
+        }catch (\Exception $e){}
 
         return redirect()->route('admin.property');
     }

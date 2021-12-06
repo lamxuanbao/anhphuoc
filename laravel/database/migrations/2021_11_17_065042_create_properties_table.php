@@ -23,7 +23,7 @@ class CreatePropertiesTable extends Migration
                 $table->enum('type', ['buy', 'rent'])
                       ->default('buy');
                 $table->string('title');
-                $table->longText('keywords')
+                $table->longText('keyword')
                       ->nullable();
                 $table->longText('description')
                       ->nullable();

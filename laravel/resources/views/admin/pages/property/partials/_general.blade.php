@@ -56,7 +56,7 @@
             <div class="col-9">
                 <input class="form-control form-control-lg form-control-solid"
                        type="text" name="area"
-                       value="{{ old('area',floatval($property->area)) }}">
+                       value="{{ old('area',($property->area) ? floatval($property->area) : null) }}">
                 @error('area')
                 <div class="fv-plugins-message-container">
                     <div data-field="title" data-validator="notEmpty" class="fv-help-block">
@@ -73,7 +73,7 @@
             <div class="col-9">
                 <input class="form-control form-control-lg form-control-solid"
                        type="text" name="price"
-                       value="{{ old('price',floatval($property->price)) }}">
+                       value="{{ old('price', ($property->price) ? floatval($property->price) : null) }}">
                 @error('price')
                 <div class="fv-plugins-message-container">
                     <div data-field="title" data-validator="notEmpty" class="fv-help-block">
