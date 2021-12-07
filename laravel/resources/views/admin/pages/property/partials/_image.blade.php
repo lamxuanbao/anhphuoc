@@ -2,6 +2,11 @@
     <div class="col-xl-2"></div>
     <div class="col-xl-7 my-2">
         <ul class="list-images w-100">
+            @foreach($property->images as $key => $image)
+                <li data-id="{{$key}}">
+                    <img src="{{$image->url}}"><label class="remove btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"> <i class="fa fa-trash icon-sm text-muted"></i></label>
+                </li>
+            @endforeach
             <li>
                 <div
                     style="cursor:pointer; position: relative; width: 100px; height: 100px; line-height: 30px; text-align: center;">
@@ -25,6 +30,9 @@
     </div>
 </div>
 <div id="images_data">
+    @foreach($property->images as $key => $image)
+        <div data-id="{{$key}}"><textarea name="images_data[]">{{json_encode($image)}}</textarea></div>
+    @endforeach
 </div>
 @push('styles')
     <style>
@@ -43,7 +51,8 @@
             width: 100px;
             height: 100px;
         }
-        .list-images li label{
+
+        .list-images li label {
             position: absolute;
             right: 5px;
         }
@@ -52,21 +61,19 @@
 @push('scripts')
     <script>
         $(function () {
-            var i = 0;
-            var data = {!! json_encode(old('images_data',[])) !!};;
+            var i = {{count($property->images)}};
+            var data = {!! json_encode(old('images_data',[])) !!};
+            ;
             for (const element of data) {
+                i++;
                 $("#images_data").append('<div data-id="' + i + '"><textarea name="images_data[]">' + element + '</textarea></div>')
                 var image = JSON.parse(element);
                 $('.list-images').find(' > li:nth-last-child(1)').before('<li data-id="' + i + '"><img src="' + image.url + '" /><label class="remove btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"> <i class="fa fa-trash icon-sm text-muted"></i></label></li>');
-                i++;
             }
-            $('label.remove').on('click',function (e){
-                console.log(e)
+            $(document).on('click', '.list-images .remove', function (e) {
+                console.log($(this).parent().attr('data-id'))
                 console.log(123123)
-            })
-            function removeImage(key){
-                console.log(key)
-            }
+            });
             $('#images_property').on('change', function (e) {
                 $('#messsage_image .fv-help-block').html('');
                 var formData = new FormData();
@@ -86,9 +93,9 @@
                     processData: false,
                     success: (response) => {
                         for (const element of response) {
+                            i++;
                             $("#images_data").append('<div data-id="' + i + '"><textarea name="images_data[]">' + JSON.stringify(element) + '</textarea></div>')
                             $('.list-images').find(' > li:nth-last-child(1)').before('<li data-id="' + i + '"><img src="' + element.url + '" /><label class="remove btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"> <i class="fa fa-trash icon-sm text-muted"></i></label></li>');
-                            i++;
                         }
                         $('#images_property').val('');
                     },
