@@ -11277,15 +11277,38 @@ body .container {
 }
 
 .footer {
-  background-color: #00a88e;
-  padding: 30px;
+  background-color: #a9b2c1;
+  padding: 50px 0;
+  font-size: 20px;
 }
 .footer p {
   text-align: center;
   text-transform: uppercase;
   color: #fff;
-  font-size: 30px;
   margin-bottom: 0px;
+}
+.footer .header-dot {
+  margin: 1.5rem 0;
+  width: 100% !important;
+}
+.footer .hotline .hotline-bg {
+  background-image: url("../../images/phone.png");
+  background-repeat: no-repeat;
+  height: 100%;
+  position: absolute;
+  z-index: 9;
+}
+.footer .hotline .hotline-bg span {
+  top: 15px;
+  left: 10px;
+}
+.footer .hotline .header-dot {
+  position: relative;
+  top: 25px;
+}
+.footer .hotline span {
+  padding-left: 70px;
+  position: relative;
 }
 
 .form-control {

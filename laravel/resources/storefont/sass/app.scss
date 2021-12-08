@@ -1,9 +1,7 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-
 // Variables
 @import 'variables';
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 @import "~select2/dist/css/select2.css";
@@ -26,14 +24,40 @@ body .container {
 }
 
 .footer {
-    background-color: #00a88e;
-    padding: 30px;
+    background-color: #a9b2c1;
+    padding: 50px 0;
+
+    font-size: 20px;
     p {
         text-align: center;
         text-transform: uppercase;
         color: #fff;
-        font-size: 30px;
         margin-bottom: 0px;
+    }
+    .header-dot {
+        margin: 1.5rem 0;
+        width: 100% !important;
+    }
+    .hotline {
+        .hotline-bg {
+            background-image: url("../../images/phone.png");
+            background-repeat: no-repeat;
+            height: 100%;
+            position: absolute;
+            z-index: 9;
+            span{
+                top: 15px;
+                left: 10px;
+            }
+        }
+        .header-dot{
+            position: relative;
+            top: 25px;
+        }
+        span {
+            padding-left: 70px;
+            position: relative;
+        }
     }
 }
 
@@ -63,23 +87,26 @@ body .container {
 .color-main {
     color: #00a88e;
 }
+
 .btn-main {
     background: #00a88e;
     color: #ffffff;
 }
-a{
+
+a {
     text-decoration: none !important;
 }
+
 .navbar-expand-lg .navbar-collapse {
     display: flex !important;
     flex-basis: auto;
 }
 
-.dropdown-toggle::after{
+.dropdown-toggle::after {
     display: none !important;
 }
 
-.border-none{
+.border-none {
     border: none !important;
 }
 
@@ -92,7 +119,8 @@ a{
     left: 100%;
     margin-top: -1px;
 }
-.bd-highlight{
+
+.bd-highlight {
     font-size: 40px;
     color: white;
     text-transform: uppercase;

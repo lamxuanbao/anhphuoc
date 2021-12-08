@@ -23,7 +23,7 @@
                                 Trang chủ
                             </li>
                         </a>
-                        <li class="dropdown-submenu">
+                        <li class="border-none dropdown-submenu">
                             <span class="test" tabindex="-1">
                                 Khu vực <i class="fa fa-caret-right"></i>
                             </span>
@@ -40,11 +40,6 @@
                                 @endforeach
                             </ul>
                         </li>
-                        <a href="{{route('deposit')}}">
-                            <li class="border-none">
-                                Kí gửi
-                            </li>
-                        </a>
                     </ul>
                 </div>
 

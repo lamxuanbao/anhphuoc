@@ -82,6 +82,57 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-form-label col-3 text-lg-right text-left">
+                                            Địa chỉ
+                                        </label>
+                                        <div class="col-9">
+                                            <input class="form-control form-control-lg form-control-solid"
+                                                   type="text" name="address"
+                                                   value="{{ old('address',setting('address')) }}">
+                                            @error('address')
+                                            <div class="fv-plugins-message-container">
+                                                <div data-field="title" data-validator="notEmpty" class="fv-help-block">
+                                                    {{ $message }}
+                                                </div>
+                                            </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-3 text-lg-right text-left">
+                                            Email
+                                        </label>
+                                        <div class="col-9">
+                                            <input class="form-control form-control-lg form-control-solid"
+                                                   type="text" name="email"
+                                                   value="{{ old('email',setting('email')) }}">
+                                            @error('email')
+                                            <div class="fv-plugins-message-container">
+                                                <div data-field="title" data-validator="notEmpty" class="fv-help-block">
+                                                    {{ $message }}
+                                                </div>
+                                            </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-3 text-lg-right text-left">
+                                            Hotline
+                                        </label>
+                                        <div class="col-9">
+                                            <input class="form-control form-control-lg form-control-solid"
+                                                   type="text" name="hotline"
+                                                   value="{{ old('hotline',setting('hotline')) }}">
+                                            @error('hotline')
+                                            <div class="fv-plugins-message-container">
+                                                <div data-field="title" data-validator="notEmpty" class="fv-help-block">
+                                                    {{ $message }}
+                                                </div>
+                                            </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-3 text-lg-right text-left">
                                             Logo
                                         </label>
                                         <div class="col-9">
