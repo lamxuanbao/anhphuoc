@@ -1,11 +1,11 @@
 <div class="footer">
     <div class="container">
         <div class="row pb-3">
-            <div class="col-md-4">
+            <div class="col-md-4 pb-3">
                 Địa chỉ : {{setting('address')}}
                 <div class="header-dot"></div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 pb-3">
                 Email : {{setting('email')}}
                 <div class="header-dot"></div>
             </div>
