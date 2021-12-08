@@ -43,6 +43,9 @@
                         <button type="submit" class="fa fa-search"
                                 style="background: no-repeat;position: absolute;border: none;right: 20px;"></button>
                     </form>
+                    <div class="mr-auto">
+                        <div class="p-2 bd-highlight">Phước đất nhà xưởng</div>
+                    </div>
                 </div>
             </nav>
         </div>
@@ -51,7 +54,7 @@
         </div>
         <div class="col-md-12">
             <div class="d-flex justify-content-between bd-highlight mb-3">
-                <div class="p-2 bd-highlight header-title">Phước đất nhà xưởng</div>
+                <div class="p-2 bd-highlight header-title"></div>
                 <div class="p-2 bd-highlight">
                     <ul class="header-nav">
                         @auth('customers')

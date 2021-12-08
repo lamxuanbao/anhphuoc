@@ -47,6 +47,12 @@
                         </a>
                     </ul>
                 </div>
+
+                <div class="collapse navbar-collapse flex-row-reverse">
+                    <div class="mr-auto">
+                        <div class="p-2 bd-highlight">Phước đất nhà xưởng</div>
+                    </div>
+                </div>
             </nav>
         </div>
     </div>
