@@ -22,6 +22,19 @@
         </ul>
     </div>
 </div>
+
+@error('images_data')
+<div class="row">
+    <div class="col-xl-2"></div>
+    <div class="col-xl-7 my-2">
+        <div class="fv-plugins-message-container">
+            <div data-field="title" data-validator="notEmpty" class="fv-help-block">
+                Vui lòng chọn hình ảnh
+            </div>
+        </div>
+    </div>
+</div>
+@enderror
 <div class="row">
     <div class="col-xl-2"></div>
     <div class="col-xl-7 my-2">
