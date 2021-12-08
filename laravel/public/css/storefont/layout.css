@@ -11288,8 +11288,10 @@ body .container {
   margin-bottom: 0px;
 }
 .footer .header-dot {
-  margin: 1.5rem 0;
-  width: 100% !important;
+  margin: 0;
+  width: 90% !important;
+  position: absolute;
+  bottom: 0px;
 }
 .footer .hotline .hotline-bg {
   background-image: url("../../images/phone.png");
@@ -11297,6 +11299,7 @@ body .container {
   height: 100%;
   position: absolute;
   z-index: 9;
+  min-height: 75px;
 }
 .footer .hotline .hotline-bg span {
   top: 15px;
@@ -11304,7 +11307,7 @@ body .container {
 }
 .footer .hotline .header-dot {
   position: relative;
-  top: 25px;
+  top: 45px;
 }
 .footer .hotline span {
   padding-left: 70px;

@@ -26,8 +26,8 @@ body .container {
 .footer {
     background-color: #a9b2c1;
     padding: 50px 0;
-
     font-size: 20px;
+
     p {
         text-align: center;
         text-transform: uppercase;
@@ -35,8 +35,10 @@ body .container {
         margin-bottom: 0px;
     }
     .header-dot {
-        margin: 1.5rem 0;
-        width: 100% !important;
+        margin: 0;
+        width: 90% !important;
+        position: absolute;
+        bottom: 0px;
     }
     .hotline {
         .hotline-bg {
@@ -45,6 +47,7 @@ body .container {
             height: 100%;
             position: absolute;
             z-index: 9;
+            min-height: 75px;
             span{
                 top: 15px;
                 left: 10px;
@@ -52,7 +55,7 @@ body .container {
         }
         .header-dot{
             position: relative;
-            top: 25px;
+            top: 45px;
         }
         span {
             padding-left: 70px;
