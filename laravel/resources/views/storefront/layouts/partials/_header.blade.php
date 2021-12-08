@@ -2,11 +2,43 @@
     <div class="row">
         <div class="col-md-12">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="/">
-                    <img src="{{asset('images/logo.png')}}"/>
-                </a>
+                <div class="dropdown">
+                    <div class="navbar-brand dropdown-toggle" type="button" data-toggle="dropdown">
+                        <img src="{{asset('images/logo.png')}}"/>
+                    </div>
+                    <ul class="dropdown-menu header-nav">
+                        <a href="{{route('home')}}">
+                            <li>
+                                Trang chủ
+                            </li>
+                        </a>
+                        <li class="dropdown-submenu">
+                            <span class="test" tabindex="-1">
+                                Khu vực <i class="fa fa-caret-right"></i>
+                            </span>
+                            <ul class="dropdown-menu header-nav">
+                                @php
+                                    $province = \App\Models\Province::all();
+                                @endphp
+                                @foreach($province as $item)
+                                    <a href="{{ route('area') }}?title=&type=&province_id={{$item->id}}&area=&price=">
+                                        <li class="{{($loop->last) ? 'border-none' : ''}}">
+                                            {{$item->name}}
+                                        </li>
+                                    </a>
+                                @endforeach
+                            </ul>
+                        </li>
+                        <a href="{{route('deposit')}}">
+                            <li class="border-none">
+                                Kí gửi
+                            </li>
+                        </a>
+                    </ul>
+                </div>
                 <div class="collapse navbar-collapse flex-row-reverse">
-                    <form class="form-inline my-2 my-lg-0" method="GET" action="{{ route('area') }}" novalidate="novalidate" enctype="multipart/form-data">
+                    <form class="form-inline my-2 my-lg-0" method="GET" action="{{ route('area') }}"
+                          novalidate="novalidate" enctype="multipart/form-data">
                         <input class="form-control" name="title" style="width: 200px; padding-right: 30px"/>
                         <button type="submit" class="fa fa-search"
                                 style="background: no-repeat;position: absolute;border: none;right: 20px;"></button>
@@ -49,4 +81,14 @@
 </div>
 @push('styles')
     <link href="{{ asset('css/storefont/partials/header.css') }}" rel="stylesheet">
+@endpush
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $('.dropdown-submenu').on("click", function (e) {
+                $(this).children('ul').toggle();
+                e.stopPropagation();
+            });
+        });
+    </script>
 @endpush

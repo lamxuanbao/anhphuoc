@@ -172,3 +172,29 @@
         left: 70px;
     }
 }
+
+.header {
+    .dropdown {
+        display: block;
+        z-index: 999;
+
+        a {
+            color: black !important;
+            cursor: pointer;
+        }
+        .header-nav {
+            padding-left: 15px;
+            font-weight: 200;
+            line-height: 180%;
+            li {
+                cursor: pointer;
+                i {
+                    float: right;
+                    position: relative;
+                    top: 10px;
+                    padding-right: 10px;
+                }
+            }
+        }
+    }
+}

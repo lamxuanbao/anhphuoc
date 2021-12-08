@@ -158,3 +158,26 @@
   bottom: 90px;
   left: 70px;
 }
+
+.header .dropdown {
+  display: block;
+  z-index: 999;
+}
+.header .dropdown a {
+  color: black !important;
+  cursor: pointer;
+}
+.header .dropdown .header-nav {
+  padding-left: 15px;
+  font-weight: 200;
+  line-height: 180%;
+}
+.header .dropdown .header-nav li {
+  cursor: pointer;
+}
+.header .dropdown .header-nav li i {
+  float: right;
+  position: relative;
+  top: 10px;
+  padding-right: 10px;
+}

@@ -13,9 +13,40 @@
     <div class="row">
         <div class="col-md-12">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="/">
-                    <img src="{{asset('images/logo.png')}}"/>
-                </a>
+                <div class="dropdown">
+                    <div class="navbar-brand dropdown-toggle" type="button" data-toggle="dropdown">
+                        <img src="{{asset('images/logo.png')}}"/>
+                    </div>
+                    <ul class="dropdown-menu header-nav">
+                        <a href="{{route('home')}}">
+                            <li>
+                                Trang chủ
+                            </li>
+                        </a>
+                        <li class="dropdown-submenu">
+                            <span class="test" tabindex="-1">
+                                Khu vực <i class="fa fa-caret-right"></i>
+                            </span>
+                            <ul class="dropdown-menu header-nav">
+                                @php
+                                    $province = \App\Models\Province::all();
+                                @endphp
+                                @foreach($province as $item)
+                                    <a href="{{ route('area') }}?title=&type=&province_id={{$item->id}}&area=&price=">
+                                        <li class="{{($loop->last) ? 'border-none' : ''}}">
+                                            {{$item->name}}
+                                        </li>
+                                    </a>
+                                @endforeach
+                            </ul>
+                        </li>
+                        <a href="{{route('deposit')}}">
+                            <li class="border-none">
+                                Kí gửi
+                            </li>
+                        </a>
+                    </ul>
+                </div>
             </nav>
         </div>
     </div>
@@ -41,7 +72,7 @@
                 </div>
                 <div class="d-flex flex-row pb-3">
                     <div class="col-md-4">
-                        <select class="form-control select2" data-placeholder="Tỉnh/Thành" name="provine_id">
+                        <select class="form-control select2" data-placeholder="Tỉnh/Thành" name="province_id">
                             <option></option>
                             @php
                                 $province = \App\Models\Province::all();
@@ -79,4 +110,14 @@
 </div>
 @push('styles')
     <link href="{{ asset('css/storefont/partials/header_search.css') }}" rel="stylesheet">
+@endpush
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $('.dropdown-submenu').on("click", function (e) {
+                $(this).children('ul').toggle();
+                e.stopPropagation();
+            });
+        });
+    </script>
 @endpush

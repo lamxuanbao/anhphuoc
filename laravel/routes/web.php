@@ -29,6 +29,9 @@ Route::namespace('App\Http\Controllers\Storefront')
                   ->name('home');
              Route::get('/khu-vuc', 'PagesController@area')
                   ->name('area');
+             Route::get('/ky-gui', 'PagesController@deposit')
+                  ->name('deposit');
+             Route::put('/ky-gui', 'PagesController@saveDeposit');
              Route::get('/dang-nhap', 'LoginController@showLoginForm')
                   ->name('login');
              Route::put('/dang-nhap', 'LoginController@login');
