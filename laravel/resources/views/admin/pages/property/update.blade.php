@@ -28,7 +28,6 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    {{$errors}}
                     <div class="tab-content">
                         <div class="tab-pane show active px-7" id="tab_1">
                             @include('admin.pages.property.partials._seo')
@@ -43,7 +42,9 @@
                 </div>
                 <div class="card-footer text-right">
                     <button type="submit" class="btn btn-success mr-2">Lưu</button>
-                    <button type="button" class="btn btn-secondary">Thoát</button>
+                    <a href="{{route('admin.property')}}" class="btn btn-secondary">
+                        Thoát
+                    </a>
                 </div>
             </div>
         </form>

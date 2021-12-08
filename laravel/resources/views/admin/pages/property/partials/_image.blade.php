@@ -4,7 +4,9 @@
         <ul class="list-images w-100">
             @foreach($property->images as $key => $image)
                 <li data-id="{{$key}}">
-                    <img src="{{$image->url}}"><label class="remove btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"> <i class="fa fa-trash icon-sm text-muted"></i></label>
+                    <img src="{{$image->url}}"><label
+                        class="remove btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"> <i
+                            class="fa fa-trash icon-sm text-muted"></i></label>
                 </li>
             @endforeach
             <li>
@@ -29,7 +31,7 @@
         </div>
     </div>
 </div>
-<div id="images_data">
+<div id="images_data" style="display: none">
     @foreach($property->images as $key => $image)
         <div data-id="{{$key}}"><textarea name="images_data[]">{{json_encode($image)}}</textarea></div>
     @endforeach
@@ -63,7 +65,6 @@
         $(function () {
             var i = {{count($property->images)}};
             var data = {!! json_encode(old('images_data',[])) !!};
-            ;
             for (const element of data) {
                 i++;
                 $("#images_data").append('<div data-id="' + i + '"><textarea name="images_data[]">' + element + '</textarea></div>')
@@ -71,8 +72,9 @@
                 $('.list-images').find(' > li:nth-last-child(1)').before('<li data-id="' + i + '"><img src="' + image.url + '" /><label class="remove btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"> <i class="fa fa-trash icon-sm text-muted"></i></label></li>');
             }
             $(document).on('click', '.list-images .remove', function (e) {
-                console.log($(this).parent().attr('data-id'))
-                console.log(123123)
+                var id = $(this).parent().attr('data-id');
+                $(this).parent().remove();
+                $('div[data-id="' + id + '"]').remove();
             });
             $('#images_property').on('change', function (e) {
                 $('#messsage_image .fv-help-block').html('');

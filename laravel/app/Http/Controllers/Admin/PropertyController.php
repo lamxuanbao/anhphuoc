@@ -38,6 +38,7 @@ class PropertyController extends Controller
             ],
             'area'    => [
                 'required',
+                'integer',
             ],
             'type'    => [
                 'required',
@@ -58,6 +59,7 @@ class PropertyController extends Controller
             ]
         ])->validate();
         $params = $request->except('_token', '_method');
+        $params['is_active'] = $params['is_active'] ?? false;
         $property = new Property();
         $property->fill($params);
         $property->save();
@@ -72,9 +74,7 @@ class PropertyController extends Controller
                 ->createMany($images);
         }catch (\Exception $e){}
 
-        dd(1);
-
-//        dd($params);
+        return redirect()->route('admin.property');
     }
 
     public function edit($id)
@@ -95,6 +95,7 @@ class PropertyController extends Controller
             ],
             'area'    => [
                 'required',
+                'integer',
             ],
             'type'    => [
                 'required',
@@ -115,6 +116,7 @@ class PropertyController extends Controller
             ]
         ])->validate();
         $params = $request->except('_token', '_method');
+        $params['is_active'] = $params['is_active'] ?? false;
         $property = Property::findOrFail($id);
         $property->fill($params);
         $property->save();
@@ -124,7 +126,6 @@ class PropertyController extends Controller
             foreach ($images as &$item){
                 $item = json_decode($item,true);
                 if(strpos($item['path'], 'tmp/') !== false) {
-                    dd(1);
                     Storage::move($item['path'], str_replace('tmp/', 'property/', $item['path']));
                     $item['path'] = str_replace('tmp/', 'property/', $item['path']);
                 }

@@ -116,16 +116,5 @@
                 @enderror
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-3 text-lg-right text-left">
-                Logo
-            </label>
-            <div class="col-9">
-                <div
-                    style="cursor:pointer; position: relative; width: 100px; height: 100px; line-height: 30px; text-align: center;">
-                    <input type="file" name="image" class="form-control" placeholder="image">
-                </div>
-            </div>
-        </div>
     </div>
 </div>
