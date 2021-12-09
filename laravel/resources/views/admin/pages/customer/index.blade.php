@@ -9,11 +9,6 @@
                         Danh sách khách hàng
                     </h3>
                 </div>
-                <div class="card-toolbar">
-                    <a href="{{route('admin.province.create')}}" class="btn btn-primary font-weight-bolder">
-                        Tạo mới
-                    </a>
-                </div>
             </div>
             <div class="card-body">
                 <div class="datatable datatable-default datatable-primary datatable-loaded">
@@ -21,6 +16,8 @@
                         <thead>
                         <tr>
                             <th scope="col">Tên</th>
+                            <th scope="col">Số điện thoại</th>
+                            <th scope="col">Email</th>
                             <th scope="col">#</th>
                         </tr>
                         </thead>
@@ -28,13 +25,10 @@
                         @foreach($customer as $item)
                             <tr>
                                 <th scope="row">{{$item->name}}</th>
+                                <th scope="row">{{$item->phone}}</th>
+                                <th scope="row">{{$item->email}}</th>
                                 <td>
-                                    <a href="{{route('admin.province.update',$item->id)}}">
-                                        <span class="label label-inline label-light-success font-weight-bold">
-                                            Chỉnh sửa
-                                        </span>
-                                    </a>
-                                    <a href="{{route('admin.province.delete',$item->id)}}">
+                                    <a href="{{route('admin.customer.delete',$item->id)}}">
                                         <span class="label label-inline label-light-danger font-weight-bold">
                                             Xoá
                                         </span>

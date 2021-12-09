@@ -1,47 +1,40 @@
-<div class="row">
-    <div class="col-xl-2"></div>
-    <div class="col-xl-7 my-2">
-        <ul class="list-images w-100">
-            @foreach($property->images as $key => $image)
-                <li data-id="{{$key}}">
-                    <img src="{{$image->url}}"><label
-                        class="remove btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"> <i
-                            class="fa fa-trash icon-sm text-muted"></i></label>
-                </li>
-            @endforeach
-            <li>
-                <div
-                    style="cursor:pointer; position: relative; width: 100px; height: 100px; line-height: 30px; text-align: center;">
-                    <div class="images-preview preview-favicon">
-                        <img src="{{asset('images/default.png')}}">
+<div class="form-group row">
+    <label class="col-form-label col-3 text-lg-right text-left">
+        Hình ảnh
+    </label>
+    <div class="col-9">
+        <div>
+            <ul class="list-images w-100">
+                @foreach($property->images as $key => $image)
+                    <li data-id="{{$key}}">
+                        <img src="{{$image->url}}"><label
+                            class="remove btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"> <i
+                                class="fa fa-trash icon-sm text-muted"></i></label>
+                    </li>
+                @endforeach
+                <li>
+                    <div
+                        style="cursor:pointer; position: relative; width: 100px; height: 100px; line-height: 30px; text-align: center;">
+                        <div class="images-preview preview-favicon">
+                            <img src="{{asset('images/default.png')}}">
+                        </div>
+                        <input id="images_property" type="file" multiple
+                               style="opacity: 0.0; position: absolute; top:0; left: 0; bottom: 0; right:0; width: 100%; height:100%;"/>
                     </div>
-                    <input id="images_property" type="file" multiple
-                           style="opacity: 0.0; position: absolute; top:0; left: 0; bottom: 0; right:0; width: 100%; height:100%;"/>
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
-
-@error('images_data')
-<div class="row">
-    <div class="col-xl-2"></div>
-    <div class="col-xl-7 my-2">
+                </li>
+            </ul>
+        </div>
+        @error('images_data')
         <div class="fv-plugins-message-container">
             <div data-field="title" data-validator="notEmpty" class="fv-help-block">
                 Vui lòng chọn hình ảnh
             </div>
         </div>
+        @enderror
     </div>
 </div>
-@enderror
-<div class="row">
-    <div class="col-xl-2"></div>
-    <div class="col-xl-7 my-2">
-        <div id="messsage_image" class="fv-plugins-message-container">
-            <div data-field="title" data-validator="notEmpty" class="fv-help-block">
-            </div>
-        </div>
+<div id="messsage_image" class="fv-plugins-message-container">
+    <div data-field="title" data-validator="notEmpty" class="fv-help-block">
     </div>
 </div>
 <div id="images_data" style="display: none">

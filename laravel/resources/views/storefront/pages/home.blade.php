@@ -27,7 +27,11 @@
                         <li>Diện tích : {{number_format(floatval($item->area))}} m<sup>2</sup></li>
                     </ul>
                     <div class="item-img">
-                        <img class="d-block w-100" src="images/image1.png" alt="First slide">
+                        @if(isset($item->images[0]['url']))
+                            <img class="d-block w-100" src="{{$item->images[0]['url']}}" alt="{{$item->title}}">
+                        @else
+                            <img class="d-block w-100" src="{{asset('images/default.png')}}" alt="{{$item->title}}">
+                        @endif
                     </div>
                     <a class="btn item-button" href="{{route('detail',$item->slug)}}">
                         Xem thêm

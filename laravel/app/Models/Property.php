@@ -25,9 +25,11 @@ class Property extends Model
         'user_id',
         'customer_id',
         'slug',
+        'end_date',
     ];
     protected $casts = [
         'is_active' => 'boolean',
+        'end_date' => 'date',
     ];
 
     protected $slugAttribute = 'title';

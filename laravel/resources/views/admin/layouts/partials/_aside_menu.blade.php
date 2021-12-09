@@ -20,9 +20,16 @@
                 </a>
             </li>
             <li class="menu-item {{ (strpos(\Request::route()->getName(),'admin.customer') !== false) ? 'menu-item-active' : ''  }}" aria-haspopup="true">
-                <a href="{{route('admin.customer.index')}}" class="menu-link ">
+                <a href="{{route('admin.customer')}}" class="menu-link ">
                     <span class="menu-text">
                         Khách hàng
+                    </span>
+                </a>
+            </li>
+            <li class="menu-item {{ (strpos(\Request::route()->getName(),'admin.deposit') !== false) ? 'menu-item-active' : ''  }}" aria-haspopup="true">
+                <a href="{{route('admin.deposit')}}" class="menu-link ">
+                    <span class="menu-text">
+                        Ký gửi
                     </span>
                 </a>
             </li>

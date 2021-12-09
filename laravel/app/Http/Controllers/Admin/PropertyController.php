@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Property;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -14,7 +15,7 @@ class PropertyController extends Controller
 {
     public function index()
     {
-        $property = Property::orderBy('id')
+        $property = Property::orderBy('id', 'DESC')
                             ->paginate(15);
 
         return view('admin.pages.property.index', compact('property'))->withTitle('Danh sách bất động sản');
@@ -50,9 +51,6 @@ class PropertyController extends Controller
                     'required',
                     'integer',
                 ],
-                'is_active'   => [
-                    'boolean',
-                ],
                 'province_id' => [
                     'required',
                 ],
@@ -66,7 +64,7 @@ class PropertyController extends Controller
         )
                  ->validate();
         $params              = $request->except('_token', '_method');
-        $params['is_active'] = $params['is_active'] ?? false;
+        $params['is_active'] = true;
         $property            = new Property();
         $property->fill($params);
         $property->save();
@@ -130,9 +128,8 @@ class PropertyController extends Controller
             ]
         )
                  ->validate();
-        $params              = $request->except('_token', '_method');
-        $params['is_active'] = $params['is_active'] ?? false;
-        $property            = Property::findOrFail($id);
+        $params   = $request->except('_token', '_method', 'is_active');
+        $property = Property::findOrFail($id);
         $property->fill($params);
         $property->save();
         try {
@@ -159,5 +156,19 @@ class PropertyController extends Controller
         Property::destroy($id);
 
         return redirect()->route('admin.property');
+    }
+
+    public function active($id)
+    {
+        $property            = Property::findOrFail($id);
+        if(count($property->images) == 0){
+            return redirect()->route('admin.property.update', $id)->withErrors(['images_data' => 'The Message']);
+        }
+        $property->is_active = true;
+        $property->end_date  = Carbon::now()
+                                     ->addDays(7);
+        $property->save();
+
+        return redirect()->route('admin.property.update', $id);
     }
 }

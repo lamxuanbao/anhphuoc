@@ -15,7 +15,9 @@
                 </div>
                 <div class="card-footer text-right">
                     <button type="submit" class="btn btn-success mr-2">Lưu</button>
-                    <button type="button" class="btn btn-secondary">Thoát</button>
+                    <a href="{{route('admin.province')}}" class="btn btn-secondary">
+                        Thoát
+                    </a>
                 </div>
             </div>
         </form>

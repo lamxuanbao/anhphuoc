@@ -21,6 +21,7 @@ class PropertyController extends Controller
     {
         $user     = auth('customers')->user();
         $property = Property::where(['customer_id' => $user->id])
+                            ->orderBy('id', 'DESC')
                             ->orderBy('id')
                             ->paginate(15);
 

@@ -34,7 +34,13 @@ Route::namespace('App\Http\Controllers\Admin')->group(function () {
         Route::get('/setting', 'SettingController@edit')->name('admin.setting');
         Route::put('/setting', 'SettingController@update');
 
-        Route::get('/customer', 'CustomerController@index')->name('admin.customer.index');
+        Route::group(
+            ['prefix' => 'customer'],
+            function () {
+                Route::get('/', 'CustomerController@index')->name('admin.customer');
+                Route::get('/delete/{id}', 'CustomerController@destroy')->name('admin.customer.delete');
+            }
+        );
 
         Route::group(
             ['prefix' => 'province'],
@@ -56,6 +62,16 @@ Route::namespace('App\Http\Controllers\Admin')->group(function () {
                 Route::get('/update/{id}', 'PropertyController@edit')->name('admin.property.update');
                 Route::put('/update/{id}', 'PropertyController@update');
                 Route::get('/delete/{id}', 'PropertyController@destroy')->name('admin.property.delete');
+
+                Route::get('/active/{id}', 'PropertyController@active')->name('admin.property.active');
+            }
+        );
+        Route::group(
+            ['prefix' => 'deposit'],
+            function () {
+                Route::get('/', 'DepositController@index')->name('admin.deposit');
+                Route::get('/view/{id}', 'DepositController@view')->name('admin.deposit.view');
+                Route::get('/delete/{id}', 'DepositController@destroy')->name('admin.deposit.delete');
             }
         );
     });

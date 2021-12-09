@@ -33,6 +33,7 @@ class CreatePropertiesTable extends Migration
                 $table->decimal('price', 18, 2);
                 $table->boolean('is_active')
                       ->default(false);
+                $table->date('end_date')->nullable();
                 $table->bigInteger('user_id')
                       ->nullable()
                       ->unsigned()

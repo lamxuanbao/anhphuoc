@@ -3,11 +3,6 @@
     <meta name="description" content="{{$property->description}}">
     <meta name="keywords" content="{{$property->keyword}}">
 @endsection
-@php
-    $property->images = [
-        [],[]
-    ];
-@endphp
 @section('content')
     <div class="content">
         @include('storefront.layouts.partials._header_search')
@@ -17,26 +12,18 @@
                     <div class="col-md-4">
                         <div id="carouselHome" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
-                                {{--@foreach($property as $key => $item)--}}
-                                    {{--<li data-target="#carouselHome" data-slide-to="{{$key}}" class="{{($key == 0) ? 'active' : ''}}">--}}
-                                        {{--<i class="fa fa-circle"></i>--}}
-                                    {{--</li>--}}
-                                {{--@endforeach--}}
-                                <li data-target="#carouselHome" data-slide-to="0" class="active">
-                                    <i class="fa fa-circle"></i>
-                                </li>
-                                <li data-target="#carouselHome" data-slide-to="1">
-                                    <i class="fa fa-circle"></i>
-                                </li>
-                                <li data-target="#carouselHome" data-slide-to="2">
-                                    <i class="fa fa-circle"></i>
-                                </li>
+                                @foreach($property->images as $key => $item)
+                                    <li data-target="#carouselHome" data-slide-to="{{$key}}"
+                                        class="{{($key == 0) ? 'active' : ''}}">
+                                        <i class="fa fa-circle"></i>
+                                    </li>
+                                @endforeach
                             </ol>
                             <div class="carousel-inner">
                                 @foreach($property->images as $key => $item)
                                     <div class="carousel-item {{($key == 0) ? 'active' : ''}}">
                                         <div class="item-img">
-                                            <img class="d-block w-100" src="{{asset('images/image1.png')}}" alt="First slide">
+                                            <img class="d-block w-100" src="{{$item['url']}}">
                                         </div>
                                     </div>
                                 @endforeach

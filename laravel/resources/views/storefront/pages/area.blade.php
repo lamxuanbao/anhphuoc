@@ -13,24 +13,24 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4">
-                            <img class="d-block w-100" src="{{asset('images/image1.png')}}" alt="First slide">
+                            @if(isset($item->images[0]['url']))
+                                <img class="d-block w-100" src="{{$item->images[0]['url']}}" alt="{{$item->title}}">
+                            @else
+                                <img class="d-block w-100" src="{{asset('images/default.png')}}" alt="{{$item->title}}">
+                            @endif
                         </div>
                         <div class="col-md-8 pt-3">
                             <ul>
-                                {{--<li>--}}
-                                    {{--<a class="navbar-brand" to="/khu-vuc/1">--}}
-                                        {{--<span class="badge">Tag 1</span>--}}
-                                    {{--</a>--}}
-                                {{--</li>--}}
                                 <li>
                                     <a class="navbar-brand" href="{{route('detail',$item->slug)}}">
                                         <h4>{{$item->title}}</h4>
                                     </a>
                                 </li>
-                                <li>Khu vực : {{$item->province->name ?? null}}</li>
-                                <li>Địa chỉ : {{$item->address}}</li>
                                 <li>Diện tích : {{number_format(floatval($item->area))}} m<sup>2</sup></li>
-                                <li>Liên hệ : {{ $item->user->name ?? $item->customer->name}}</li>
+                                <li>Liên hệ : {{ $item->user->phone ?? $item->customer->phone}}
+                                    - {{ $item->user->name ?? $item->customer->name}}</li>
+                                <li>Ngày hết hạn
+                                    : {{($item->end_date != null) ? $item->end_date->format('d/m/Y') : \Illuminate\Support\Carbon::now()->format('d/m/Y')}}</li>
                             </ul>
                         </div>
                     </div>

@@ -15,6 +15,15 @@ class CreateDepositImagesTable extends Migration
     {
         Schema::create('deposit_images', function (Blueprint $table) {
             $table->id();
+            $table->string('disk');
+            $table->string('name');
+            $table->string('path');
+            $table->string('extension');
+            $table->string('mime');
+            $table->string('size');
+            $table->bigInteger('deposit_id')
+                  ->unsigned()
+                  ->index();
             $table->timestamps();
         });
     }

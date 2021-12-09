@@ -17,6 +17,8 @@ class CreateDepositsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
+            $table->boolean('status')
+                  ->default(false);
             $table->timestamps();
         });
     }

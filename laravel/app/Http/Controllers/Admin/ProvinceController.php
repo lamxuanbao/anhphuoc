@@ -13,7 +13,7 @@ class ProvinceController extends Controller
 {
     public function index()
     {
-        $province = Province::orderBy('id')
+        $province = Province::orderBy('id','DESC')
                             ->paginate(15);
 
         return view('admin.pages.province.index', compact('province'))->withTitle('Danh sách Tỉnh/Thành phố');

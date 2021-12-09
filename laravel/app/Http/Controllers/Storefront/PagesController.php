@@ -29,6 +29,7 @@ class PagesController extends Controller
     public function index()
     {
         $property = Property::where('is_active', true)
+                            ->orderBy('id', 'DESC')
                             ->take(10)
                             ->get();
 
@@ -59,7 +60,7 @@ class PagesController extends Controller
             ]
         )
                  ->validate();
-        $params   = $request->except('_token', '_method');
+        $params  = $request->except('_token', '_method');
         $deposit = new Deposit();
         $deposit->fill($params);
         $deposit->save();
@@ -67,17 +68,20 @@ class PagesController extends Controller
             $images = $request->get('images_data');
             foreach ($images as &$item) {
                 $item = json_decode($item, true);
-                Storage::move($item['path'], str_replace('tmp/', 'property/', $item['path']));
-                $item['path'] = str_replace('tmp/', 'property/', $item['path']);
+                Storage::move($item['path'], str_replace('tmp/', 'deposit/', $item['path']));
+                $item['path'] = str_replace('tmp/', 'deposit/', $item['path']);
             }
             $deposit->images()
-                     ->createMany($images);
+                    ->createMany($images);
         } catch (\Exception $e) {
         }
 
-        return view('storefront.pages.deposit', [
-            'success' => true
-        ])->withTitle(setting('title'));
+        return view(
+            'storefront.pages.deposit',
+            [
+                'success' => true,
+            ]
+        )->withTitle(setting('title'));
     }
 
     public function area(Request $request)
