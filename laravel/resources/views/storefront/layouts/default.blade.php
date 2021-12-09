@@ -8,10 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title', $title ?? '')</title>
-    @if(setting('favicon') != null)
-        <link href="{{setting('favicon')}}" rel="shortcut icon" type="image/x-icon"/>
-    @endif
-    @yield('meta')
+    <link href="{{asset('images/logo.png')}}" rel="shortcut icon" type="image/x-icon"/>
+@yield('meta')
 <!-- Scripts -->
 
     <!-- Fonts -->
