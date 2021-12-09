@@ -45,9 +45,7 @@
                     <div class="col-md-8 pt-3">
                         <ul>
                             <li>
-                                <a class="navbar-brand">
-                                    <h4>{{$property->title}}</h4>
-                                </a>
+                                <h4>{{$property->title}}</h4>
                             </li>
                             <li style="line-height: 20px">
                                 {!! $property->content !!}
