@@ -73,11 +73,11 @@ class PropertyController extends Controller
             ]
         )
                  ->validate();
-        $params              = $request->except('_token', '_method');
-        $user                = auth('customers')->user();
-        $params->customer_id = $user->id;
-        $property            = new Property();
+        $params   = $request->except('_token', '_method');
+        $user     = auth('customers')->user();
+        $property = new Property();
         $property->fill($params);
+        $property->customer_id = $user->id;
         $property->save();
         try {
             $images = $request->get('images_data');

@@ -22,7 +22,7 @@
                         <div class="col-md-8 pt-3">
                             <ul>
                                 <li>
-                                    <a class="navbar-brand" href="{{route('detail',$item->slug)}}">
+                                    <a href="{{route('detail',$item->slug)}}">
                                         <h4>{{$item->title}}</h4>
                                     </a>
                                 </li>
