@@ -22,6 +22,7 @@
                         <thead>
                         <tr>
                             <th scope="col">Tên</th>
+                            <th scope="col">Ngày hết hạn</th>
                             <th scope="col">Tình trạng</th>
                             <th scope="col">#</th>
                         </tr>
@@ -29,8 +30,11 @@
                         <tbody>
                         @foreach($property as $item)
                             <tr>
-                                <th scope="row">{{$item->title}}</th>
-                                <th>
+                                <td scope="row">{{$item->title}}</td>
+                                <td style="width: 150px">
+                                    {{($item->end_date != null) ? $item->end_date->format('d/m/Y') : ''}}
+                                </td>
+                                <td style="width: 150px">
                                     @if($item->is_active)
                                         <span class="label label-inline label-light-success font-weight-bold">
                                             Đang hoạt động
@@ -40,8 +44,16 @@
                                             Đang chờ
                                         </span>
                                     @endif
-                                </th>
-                                <td>
+                                </td>
+                                <td style="width: 150px">
+                                    @if($item->is_active)
+                                    <a href="{{route('auth.property.extend',$item->id)}}">
+                                        <span class="label label-inline label-light-danger font-weight-bold">
+                                            Gia hạn
+                                        </span>
+                                    </a>
+                                        |
+                                    @endif
                                     <a href="{{route('auth.property.delete',$item->id)}}">
                                         <span class="label label-inline label-light-danger font-weight-bold">
                                             Xoá

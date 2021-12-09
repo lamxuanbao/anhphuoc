@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
 use App\Models\Property;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -101,6 +102,18 @@ class PropertyController extends Controller
         $property = Property::where(['id' => $id, 'customer_id' => $user->id])
                             ->firstOrFail();
         $property->delete();
+
+        return redirect()->route('auth.property');
+    }
+
+    public function extend($id)
+    {
+        $user               = auth('customers')->user();
+        $property           = Property::where(['id' => $id, 'customer_id' => $user->id])
+                                      ->firstOrFail();
+        $property->end_date = Carbon::now()
+                                    ->addDays(7);
+        $property->save();
 
         return redirect()->route('auth.property');
     }

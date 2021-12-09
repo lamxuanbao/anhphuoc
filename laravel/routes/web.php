@@ -59,6 +59,7 @@ Route::namespace('App\Http\Controllers\Storefront')
                              Route::put('/create', 'PropertyController@store');
                              Route::get('/delete/{id}', 'PropertyController@destroy')
                                   ->name('auth.property.delete');
+                             Route::get('/extend/{id}', 'PropertyController@extend')->name('auth.property.extend');
                          }
                      );
                  }
