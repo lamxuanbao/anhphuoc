@@ -28,8 +28,8 @@
                         <tbody>
                         @foreach($property as $item)
                             <tr>
-                                <th scope="row">{{$item->title}}</th>
-                                <th>
+                                <td>{{$item->title}}</td>
+                                <td style="widows: 150px;">
                                     @if($item->is_active)
                                         <span class="label label-inline label-light-success font-weight-bold">
                                             Đang hoạt động
@@ -39,8 +39,8 @@
                                             Đang chờ
                                         </span>
                                     @endif
-                                </th>
-                                <td>
+                                </td>
+                                <td style="widows: 150px;">
                                     <a href="{{route('admin.property.update',$item->id)}}">
                                         <span class="label label-inline label-light-success font-weight-bold">
                                             Chỉnh sửa
