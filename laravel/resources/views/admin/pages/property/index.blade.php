@@ -29,7 +29,7 @@
                         @foreach($property as $item)
                             <tr>
                                 <td>{{$item->title}}</td>
-                                <td style="widows: 150px;">
+                                <td style="width: 150px;">
                                     @if($item->is_active)
                                         <span class="label label-inline label-light-success font-weight-bold">
                                             Đang hoạt động
@@ -40,7 +40,7 @@
                                         </span>
                                     @endif
                                 </td>
-                                <td style="widows: 150px;">
+                                <td style="width: 150px;">
                                     <a href="{{route('admin.property.update',$item->id)}}">
                                         <span class="label label-inline label-light-success font-weight-bold">
                                             Chỉnh sửa
