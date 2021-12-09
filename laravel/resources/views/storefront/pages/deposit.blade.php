@@ -29,7 +29,7 @@
                                 Nội dung
                             </label>
                             <div class="col-9">
-                                <textarea class="form-control form-control-lg form-control-solid"
+                                <textarea class="form-control form-control-lg form-control-solid" rows="5"
                                           name="content">{{ old('title',$deposit->content) }}</textarea>
                                 @error('content')
                                 <div class="invalid-feedback d-block">
