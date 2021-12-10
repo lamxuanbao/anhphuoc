@@ -246,7 +246,7 @@
                         $('#images_property').val('');
                     },
                     error: function (response) {
-                        $('#messsage_image .fv-help-block').html('Hình ảnh phải là một tập tin có định dạng: jpeg, jpg, png, gif và có dung lượng tối đã là 5MB');
+                        $('#messsage_image .fv-help-block').html('Hình ảnh phải là một tập tin có định dạng: jpeg, jpg, png, gif và có dung lượng tối đa là 5MB');
                     }
                 });
             });
