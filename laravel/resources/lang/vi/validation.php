@@ -164,6 +164,8 @@ return [
         'year' => 'năm',
         'data' => 'dữ liệu',
         'password_old' => 'mật khẩu cũ',
+        'area' => 'diện tích',
+        'price' => 'giá',
     ],
     'not_found' => ':attribute không tìm thấy.',
 ];

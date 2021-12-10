@@ -155,6 +155,14 @@
                             </div>
                         </div>
                         @enderror
+
+                        <label class="col-form-label col-3 text-lg-right text-left">
+
+                        </label>
+                        <div id="messsage_image" class="col-9">
+                            <div data-field="title" data-validator="notEmpty" class="fv-help-block invalid-feedback d-block">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer text-right">
@@ -238,7 +246,7 @@
                         $('#images_property').val('');
                     },
                     error: function (response) {
-                        $('#messsage_image .fv-help-block').html(response.responseJSON.message);
+                        $('#messsage_image .fv-help-block').html('Hình ảnh phải là một tập tin có định dạng: jpeg, jpg, png, gif và có dung lượng tối đã là 5MB');
                     }
                 });
             });

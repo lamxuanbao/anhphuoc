@@ -31,10 +31,11 @@
             </div>
         </div>
         @enderror
-    </div>
-</div>
-<div id="messsage_image" class="fv-plugins-message-container">
-    <div data-field="title" data-validator="notEmpty" class="fv-help-block">
+
+        <div id="messsage_image" class="fv-plugins-message-container">
+            <div data-field="title" data-validator="notEmpty" class="fv-help-block">
+            </div>
+        </div>
     </div>
 </div>
 <div id="images_data" style="display: none">
@@ -108,7 +109,7 @@
                         $('#images_property').val('');
                     },
                     error: function (response) {
-                        $('#messsage_image .fv-help-block').html(response.responseJSON.message);
+                        $('#messsage_image .fv-help-block').html('Hình ảnh phải là một tập tin có định dạng: jpeg, jpg, png, gif và có dung lượng tối đã là 5MB');
                     }
                 });
             });
