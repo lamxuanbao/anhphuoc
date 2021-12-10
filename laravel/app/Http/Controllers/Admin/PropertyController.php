@@ -169,6 +169,6 @@ class PropertyController extends Controller
                                      ->addDays(7);
         $property->save();
 
-        return redirect()->route('admin.property.update', $id);
+        return redirect()->route('admin.property');
     }
 }
