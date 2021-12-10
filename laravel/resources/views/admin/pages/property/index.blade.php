@@ -22,6 +22,7 @@
                         <tr>
                             <th scope="col">Tên</th>
                             <th scope="col">Tình trạng</th>
+                            <th scope="col">Tình trạng</th>
                             <th scope="col">#</th>
                         </tr>
                         </thead>
@@ -39,6 +40,9 @@
                                             Đang chờ
                                         </span>
                                     @endif
+                                </td>
+                                <td style="width: 150px">
+                                    {{($item->end_date != null) ? $item->end_date->format('d/m/Y') : ''}}
                                 </td>
                                 <td style="width: 150px;">
                                     <a href="{{route('admin.property.update',$item->id)}}">

@@ -22,8 +22,8 @@
                         <thead>
                         <tr>
                             <th scope="col">Tên</th>
-                            <th scope="col">Ngày hết hạn</th>
                             <th scope="col">Tình trạng</th>
+                            <th scope="col">Ngày hết hạn</th>
                             <th scope="col">#</th>
                         </tr>
                         </thead>
@@ -31,9 +31,6 @@
                         @foreach($property as $item)
                             <tr>
                                 <td scope="row">{{$item->title}}</td>
-                                <td style="width: 150px">
-                                    {{($item->end_date != null) ? $item->end_date->format('d/m/Y') : ''}}
-                                </td>
                                 <td style="width: 150px">
                                     @if($item->is_active)
                                         <span class="label label-inline label-light-success font-weight-bold">
@@ -44,6 +41,9 @@
                                             Đang chờ
                                         </span>
                                     @endif
+                                </td>
+                                <td style="width: 150px">
+                                    {{($item->end_date != null) ? $item->end_date->format('d/m/Y') : ''}}
                                 </td>
                                 <td style="width: 150px">
                                     @if($item->is_active)
