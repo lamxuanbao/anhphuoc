@@ -22,7 +22,7 @@
                         <tr>
                             <th scope="col">Tên</th>
                             <th scope="col">Tình trạng</th>
-                            <th scope="col">Tình trạng</th>
+                            <th scope="col">Ngày hết hạn</th>
                             <th scope="col">#</th>
                         </tr>
                         </thead>
