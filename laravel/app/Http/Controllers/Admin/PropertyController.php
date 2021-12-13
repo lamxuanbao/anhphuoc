@@ -64,9 +64,11 @@ class PropertyController extends Controller
         )
                  ->validate();
         $params              = $request->except('_token', '_method');
-        $params['is_active'] = true;
         $property            = new Property();
         $property->fill($params);
+        $property->is_active = true;
+        $property->end_date  = Carbon::now()
+            ->addDays(7);
         $property->save();
         try {
             $images = $request->get('images_data');
