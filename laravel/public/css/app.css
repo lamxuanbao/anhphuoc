@@ -3024,3 +3024,7 @@
   overflow: visible;
   clip: auto;
 }
+
+.max-h-300px {
+    max-height: 300px !important;
+}

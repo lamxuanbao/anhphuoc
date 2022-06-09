@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Property;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,7 +17,7 @@ class PropertyController extends Controller
     public function index()
     {
         $property = Property::orderBy('id', 'DESC')
-                            ->paginate(15);
+            ->paginate(15);
 
         return view('admin.pages.property.index', compact('property'))->withTitle('Danh sách bất động sản');
     }
@@ -62,12 +63,13 @@ class PropertyController extends Controller
                 ],
             ]
         )
-                 ->validate();
-        $params              = $request->except('_token', '_method');
-        $property            = new Property();
+            ->validate();
+        $params = $request->except('_token', '_method');
+        $property = new Property();
         $property->fill($params);
+        $property->user_id = Auth::id();
         $property->is_active = true;
-        $property->end_date  = Carbon::now()
+        $property->end_date = Carbon::now()
             ->addDays(7);
         $property->save();
         try {
@@ -78,7 +80,7 @@ class PropertyController extends Controller
                 $item['path'] = str_replace('tmp/', 'property/', $item['path']);
             }
             $property->images()
-                     ->createMany($images);
+                ->createMany($images);
         } catch (\Exception $e) {
         }
 
@@ -129,14 +131,14 @@ class PropertyController extends Controller
                 ],
             ]
         )
-                 ->validate();
-        $params   = $request->except('_token', '_method', 'is_active');
+            ->validate();
+        $params = $request->except('_token', '_method', 'is_active');
         $property = Property::findOrFail($id);
         $property->fill($params);
         $property->save();
         try {
             $property->images()
-                     ->delete();
+                ->delete();
             $images = $request->get('images_data');
             foreach ($images as &$item) {
                 $item = json_decode($item, true);
@@ -146,7 +148,7 @@ class PropertyController extends Controller
                 }
             }
             $property->images()
-                     ->createMany($images);
+                ->createMany($images);
         } catch (\Exception $e) {
         }
 
@@ -162,13 +164,13 @@ class PropertyController extends Controller
 
     public function active($id)
     {
-        $property            = Property::findOrFail($id);
-        if(count($property->images) == 0){
+        $property = Property::findOrFail($id);
+        if (count($property->images) == 0) {
             return redirect()->route('admin.property.update', $id)->withErrors(['images_data' => 'The Message']);
         }
         $property->is_active = true;
-        $property->end_date  = Carbon::now()
-                                     ->addDays(7);
+        $property->end_date = Carbon::now()
+            ->addDays(7);
         $property->save();
 
         return redirect()->route('admin.property');

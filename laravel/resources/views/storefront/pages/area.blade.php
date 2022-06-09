@@ -10,31 +10,32 @@
         ])
         @foreach($property as $key => $item)
             <div class="item mt-5">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            @if(isset($item->images[0]['url']))
-                                <img class="d-block w-100" src="{{$item->images[0]['url']}}" alt="{{$item->title}}">
-                            @else
-                                <img class="d-block w-100" src="{{asset('images/default.png')}}" alt="{{$item->title}}">
-                            @endif
-                        </div>
-                        <div class="col-md-8 pt-3">
-                            <ul>
-                                <li>
-                                    <a href="{{route('detail',$item->slug)}}">
+                <a href="{{route('detail',$item->slug)}}" style="color: #212529;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                @if(isset($item->images[0]['url']))
+                                    <img class="d-block w-100" src="{{$item->images[0]['url']}}" alt="{{$item->title}}">
+                                @else
+                                    <img class="d-block w-100" src="{{asset('images/default.png')}}"
+                                         alt="{{$item->title}}">
+                                @endif
+                            </div>
+                            <div class="col-md-8 pt-3">
+                                <ul>
+                                    <li>
                                         <h4>{{$item->title}}</h4>
-                                    </a>
-                                </li>
-                                <li>Diện tích : {{number_format(floatval($item->area))}} m<sup>2</sup></li>
-                                <li>Liên hệ : {{ $item->user->phone ?? $item->customer->phone}}
-                                    - {{ $item->user->name ?? $item->customer->name}}</li>
-                                <li>Ngày hết hạn
-                                    : {{($item->end_date != null) ? $item->end_date->format('d/m/Y') : \Illuminate\Support\Carbon::now()->format('d/m/Y')}}</li>
-                            </ul>
+                                    </li>
+                                    <li>Diện tích : {{number_format(floatval($item->area))}} m<sup>2</sup></li>
+                                    <li>Liên hệ : {{ $item->user->phone ?? $item->customer->phone}}
+                                        - {{ $item->user->name ?? $item->customer->name}}</li>
+                                    <li>Ngày hết hạn
+                                        : {{($item->end_date != null) ? $item->end_date->format('d/m/Y') : \Illuminate\Support\Carbon::now()->format('d/m/Y')}}</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         @endforeach
     </div>
